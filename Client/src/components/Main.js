@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import userImg from "../assets/UserImg.png";
 import Slider from "react-slick";
-import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 const Wrapper = styled.div`
   margin: 0 auto;
   display: flex;
@@ -90,7 +88,7 @@ const MainServiceSection = styled.div`
 const RecommandSection = styled.div``;
 const RecommandationTitle = styled.div`
   color: rgba(0, 0, 0, 0.7);
-  margin-bottom: 22px;
+
   font-family: Roboto;
 
   font-size: 30px;
@@ -162,16 +160,24 @@ const ServiceColumn = styled.div`
   font-weight: 500;
   line-height: 20px; /* 125% */
 `;
-
 const CarouselValue = styled.div`
   width: 200px;
   height: 140px;
+  margin-left: 100px;
   flex-shrink: 0;
   border-radius: 25px;
   background: url(<path-to-image>), lightgray 50% / cover no-repeat;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 const LectureSection = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 0px;
+  width: 700px;
+  height: 200px;
+  padding-left: 40px;
+  padding-right: 40px;
   overflow: auto;
 `;
 function Main() {
@@ -212,11 +218,14 @@ function Main() {
       percentage: 10,
     },
   ];
-
   const settings = {
     dots: true,
+    autoplay: true,
     infinite: true,
+    autoplaySpeed: 2000,
     speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
   };
   return (
     <Wrapper>
@@ -228,7 +237,9 @@ function Main() {
         </SideBar>
         <MainServiceSection>
           <RecommandSection>
-            <RecommandationTitle>Question recommendation</RecommandationTitle>
+            <RecommandationTitle style={{ marginBottom: "22px" }}>
+              Question recommendation
+            </RecommandationTitle>
             <TableSection>
               <ColumnSection
                 style={{
@@ -257,16 +268,23 @@ function Main() {
             <RecommandationTitle style={{ marginTop: "47px" }}>
               Lecture Recommendation
             </RecommandationTitle>
+
             <LectureSection>
               <Slider {...settings}>
                 <div>
-                  <div>1</div>
+                  <CarouselValue></CarouselValue>
                 </div>
                 <div>
-                  <div>1</div>
+                  <CarouselValue></CarouselValue>
                 </div>{" "}
                 <div>
-                  <div>1</div>
+                  <CarouselValue></CarouselValue>
+                </div>
+                <div>
+                  <CarouselValue></CarouselValue>
+                </div>{" "}
+                <div>
+                  <CarouselValue></CarouselValue>
                 </div>
               </Slider>
             </LectureSection>
