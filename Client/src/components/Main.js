@@ -3,6 +3,12 @@ import userImg from "../assets/UserImg.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import carousel1 from "../assets/hqdefault.png";
+import carousel2 from "../assets/carousel2.png";
+import carousel3 from "../assets/carousel3.png";
+import carousel4 from "../assets/carousel4.png";
+import carousel5 from "../assets/carousel5.png";
+
 const Wrapper = styled.div`
   margin: 0 auto;
   display: flex;
@@ -166,7 +172,7 @@ const CarouselValue = styled.div`
   margin-left: 100px;
   flex-shrink: 0;
   border-radius: 25px;
-  background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+  background: url(${(props) => props.img});
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 const LectureSection = styled.div`
@@ -259,7 +265,7 @@ function Main() {
                   <IdColumn>{user.id}</IdColumn>
                   <NameColumn>{user.name}</NameColumn>
                   <PercentageColumn>{user.percentage}%</PercentageColumn>
-                  <ServiceColumn>💎</ServiceColumn>
+                  <ServiceColumn> 💎 💊</ServiceColumn>
                 </ColumnSection>
               ))}
             </TableSection>
@@ -272,19 +278,19 @@ function Main() {
             <LectureSection>
               <Slider {...settings}>
                 <div>
-                  <CarouselValue></CarouselValue>
+                  <CarouselValue img={carousel1}></CarouselValue>
                 </div>
                 <div>
-                  <CarouselValue></CarouselValue>
+                  <CarouselValue img={carousel2}></CarouselValue>
                 </div>{" "}
                 <div>
-                  <CarouselValue></CarouselValue>
+                  <CarouselValue img={carousel3}></CarouselValue>
                 </div>
                 <div>
-                  <CarouselValue></CarouselValue>
+                  <CarouselValue img={carousel4}></CarouselValue>
                 </div>{" "}
                 <div>
-                  <CarouselValue></CarouselValue>
+                  <CarouselValue img={carousel5}></CarouselValue>
                 </div>
               </Slider>
             </LectureSection>
