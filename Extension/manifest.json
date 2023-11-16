@@ -1,0 +1,10 @@
+{
+    "manifest_version": 3,
+    "name": "RECOMM<<END",
+    "version": "1.0", 
+    "description": "YOU CAN ANALYZE YOUR CODE",
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "permissions": ["activeTab", "storage", "scripting"]
+  }
