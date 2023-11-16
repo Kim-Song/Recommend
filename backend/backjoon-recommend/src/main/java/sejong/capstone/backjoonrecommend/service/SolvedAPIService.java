@@ -8,7 +8,7 @@ import sejong.capstone.backjoonrecommend.domain.User;
 
 @Service
 @Slf4j
-public class SolvedAPI {
+public class SolvedAPIService {
     static final String BASE_URL = "https://solved.ac/api/v3";
 
     private RestTemplate restTemplate = new RestTemplate();
