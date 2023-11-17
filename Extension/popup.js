@@ -30,14 +30,8 @@ document.getElementById('copyButton').addEventListener('click', function() {
 document.getElementById('pasteButton').addEventListener('click', function() {
   chrome.storage.local.get('sourceData', function(data) {
     if (data && data.sourceData) {
-      if (data.sourceData[0].result[0]=='#'){
-        document.getElementById('dataDisplay').innerText = data.sourceData[0].result;
-        console.log(data.sourceData[0]);
-      }
-      else {
-        document.getElementById('dataDisplay').innerText = "숫자만 나옴!! DOM 확인해!!";
-      }
-      
+      document.getElementById('dataDisplay').innerText = data.sourceData[0].result;
+      console.log(data.sourceData[0]);
     } else {
       document.getElementById('dataDisplay').innerText = "저장된 데이터가 없습니다.";
     }
