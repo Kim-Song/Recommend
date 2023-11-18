@@ -1,0 +1,30 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  width: 500px;
+}
+.carousel-container {
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  flex: 0 0 33.33%; /* 각 이미지의 너비 (3개씩 보여줄 것) */
+}
+
+.backBtn {
+  margin-top: 15px;
+}
+
+.backBtn a {
+  text-decoration: none;
+}
+/* 원하는 추가적인 스타일링 */
+/* 버튼 등 다른 요소들의 스타일링을 원한다면 여기에 추가하세요 */
