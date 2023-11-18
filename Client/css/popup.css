@@ -1,0 +1,26 @@
+body {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  width: 500px;
+}
+button {
+  width: 100%;
+  margin-top: 10px;
+}
+#dataDisplay {
+  margin-top: 10px;
+  white-space: pre-line; /* 줄 바꿈 문자를 적용하기 위해 */
+}
+#code {
+  width: 500px;
+  height: 500px;
+}
+#service {
+  background-color: aquamarine;
+  width: 500px;
+  height: 500px;
+}
