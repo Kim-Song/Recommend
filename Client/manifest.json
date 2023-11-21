@@ -10,5 +10,8 @@
       "activeTab", 
       "storage", 
       "scripting"
-    ]
+    ],
+    "host_permissions": [
+      "https://www.acmicpc.net/*"
+  ]
   }
