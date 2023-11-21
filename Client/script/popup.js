@@ -2,34 +2,48 @@ document.getElementById('copyButton').addEventListener('click', function() {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     let currentTabId = tabs[0].id;
     let tabUrl = tabs[0].url;
-    let targetUrl = "https://www.acmicpc.net/source/"
+    let targetUrl = "https://www.acmicpc.net/status"
+    //https://www.acmicpc.net/status?from_mine=1&problem_id=13414&user_id=trankill1127
+    //좀 더 엄격하게 처리하면 좋겠지만?? 일단은 대충
 
     if (tabUrl.includes(targetUrl)){
       chrome.scripting.executeScript({
         target: {tabId: currentTabId},
-        func: scrapeData
-      }, function(results) {
-        if (chrome.runtime.lastError) {
-          console.error(chrome.runtime.lastError);
-          return;
-        }
+        func: scrapeSubmitNumber
+      }, function(results){
 
-        if (results && results[0]) {
-          chrome.storage.local.set({sourceData: results});
-          showData();
-        }
-      });
+        let moveUrl = "https://www.acmicpc.net/source/"+results[0].result;
+        chrome.tabs.update({url:moveUrl});
+
+        chrome.scripting.executeScript({
+          target: {tabId: currentTabId},
+          func: scrapeData
+        }, function(results) {
+          if (results && results[0]) {
+            chrome.storage.local.set({sourceData: results});
+            showData();
+          }
+        }); 
+      })
     }
-
     else {
-      alert("THIS EXTENSION ONLY WORKS ON BOJ SOURCE PAGES!!");
+      alert("THIS EXTENSION ONLY WORKS ON BOJ MY SUBMIT PAGES!!")
     }
-    
   });
 });
 
+function scrapeSubmitNumber(){
+  let body = document.querySelector('tbody');
+  let lines = body.innerText.split("\t");
+  let submitNumber = lines[0];
+
+  console.log(submitNumber);
+
+  return submitNumber;
+}
+
 function scrapeData() {
-  let body = document.querySelector('body');
+  let body = document.querySelector('tbody');
   let lines = body.innerText.split("\n");
   let filteredLines = [];
 
