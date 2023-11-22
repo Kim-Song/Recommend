@@ -1,4 +1,5 @@
 body {
+<<<<<<< HEAD
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,12 +9,52 @@ body {
 }
 .carousel-container {
   overflow: hidden;
+=======
+  width: 350px;
+  background: #231f20;
+  color: rgba(223, 190, 106, 0.7);
+  margin-bottom: 20px;
+  transition: background-color 1.5s ease;
+}
+
+.title {
+  padding: 10px;
+  font-size: 20px;
+  margin-bottom: 10px;
+  background: #333333;
+  color: rgba(223, 190, 106, 0.7);
+  transition: all 0.7s ease-out;
+  background: linear-gradient(
+    270deg,
+    rgba(223, 190, 106, 0.8),
+    rgba(146, 111, 52, 0.8),
+    rgba(34, 34, 34, 0),
+    rgba(34, 34, 34, 0)
+  );
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+}
+
+.title:hover {
+  color: #fff;
+  border: 1px solid rgba(223, 190, 106, 0);
+
+  background-position: 99% 50%;
+}
+.carousel-container {
+  width: 350px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+>>>>>>> seunghyun
 }
 
 .carousel {
   display: flex;
   transition: transform 0.5s ease-in-out;
 }
+<<<<<<< HEAD
 
 .carousel-item {
   flex: 0 0 33.33%; /* 각 이미지의 너비 (3개씩 보여줄 것) */
@@ -28,3 +69,61 @@ body {
 }
 /* 원하는 추가적인 스타일링 */
 /* 버튼 등 다른 요소들의 스타일링을 원한다면 여기에 추가하세요 */
+=======
+.carousel-item {
+  text-align: center;
+  flex: 0 0 33.33%; /* 각 이미지의 너비 (3개씩 보여줄 것) */
+}
+.btnClass {
+  width: 350px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  flex-direction: column;
+}
+
+.nextClass {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+}
+button {
+  display: inline-block;
+  width: 150px;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  color: rgba(223, 190, 106, 0.7);
+  border-radius: 0;
+  padding: 18px 20px;
+  transition: all 0.7s ease-out;
+  background: linear-gradient(
+    270deg,
+    rgba(223, 190, 106, 0.8),
+    rgba(146, 111, 52, 0.8),
+    rgba(34, 34, 34, 0),
+    rgba(34, 34, 34, 0)
+  );
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+  text-decoration: none;
+  margin-bottom: 10px;
+  border: none;
+  border: 1px solid rgba(223, 190, 106, 0.3);
+}
+
+button:hover {
+  color: #fff;
+  border: 1px solid rgba(223, 190, 106, 0);
+
+  background-position: 99% 50%;
+}
+
+.backBtn {
+  border-radius: 30px;
+}
+>>>>>>> seunghyun

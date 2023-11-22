@@ -3,10 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <title>Carousel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="./css/service.css" />
     <!-- 외부 CSS 파일 링크 -->
   </head>
   <body>
+    <div class="title">
+      <h1>® RECOMM&lt;&ltEND</h1>
+    </div>
     <div class="carousel-container">
       <div class="carousel">
         <div class="carousel-item">1</div>
@@ -22,12 +27,15 @@
         <div class="carousel-item">9</div>
       </div>
     </div>
-    <div>
-      <button class="prev">Previous</button>
-      <button class="next">Next</button>
+    <div class="btnClass">
+      <div class="nextClass">
+        <button class="prev">Previous</button>
+        <button class="next">Next</button>
+      </div>
+      <a class="backBtn" href="popup.html"
+        ><button class="backBtn">back</button></a
+      >
     </div>
-    <button class="backBtn"><a href="popup.html">back</a></button>
-
     <script src="./script/service.js"></script>
     <!-- 외부 JavaScript 파일 링크 -->
   </body>
