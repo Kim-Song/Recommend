@@ -53,5 +53,6 @@ function showCode() {
         if (data && data.sourceData) {
             displayElement.innerText=data.sourceData;
         } 
+        displayElement.classList.add('styled-text');
     });
 }
