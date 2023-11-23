@@ -2,7 +2,6 @@ document.getElementById('analyzeButton').addEventListener('click', handleButtonC
 
 function handleButtonClick() {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      const currentTab = tabs[0];
       const submitNumber = document.getElementById('submitNumber').value;
       const onUpdatedCallback = function (tabId, info) {
           if (info.status === 'complete') {
@@ -22,23 +21,6 @@ function executeScriptOnTab(tabId, scriptFunction, callback) {
     }, callback);
 }
 
-function handleScriptResults(results) {
-    if (chrome.runtime.lastError) {
-         console.error(chrome.runtime.lastError);
-         return;
-    }
-
-    if (results && results[0]) {
-        chrome.storage.local.set({ sourceData: results });
-        showCode();
-    }
-}
-
-function scrapeUserId(){
-    const userId = document.querySelector('ul > li > a').innerText;
-    return userId;
-}
-
 function scrapeCode() {
     const lines = document.querySelector('body').innerText.split("\n");
     const codeLines = [];
@@ -53,11 +35,29 @@ function scrapeCode() {
     }
 }
 
+function handleScriptResults(results) {
+    if (chrome.runtime.lastError) {
+         console.error(chrome.runtime.lastError);
+         return;
+    }
+
+    if (results && results[0]) {
+        chrome.storage.local.set({ sourceData: results[0].result });
+        showCode();
+    }
+}
+
 function showCode() {
     chrome.storage.local.get('sourceData', function (data) {
         const displayElement = document.getElementById('dataDisplay');
         if (data && data.sourceData) {
-            displayElement.innerText=data.sourceData[0].result;
+            displayElement.innerText=data.sourceData;
+        } 
+    });
+    chrome.storage.local.get('idData', function (data) {
+        const displayElement = document.getElementById('idDisplay');
+        if (data && data.idData) {
+            displayElement.innerText=data.idData;
         } 
     });
 }
