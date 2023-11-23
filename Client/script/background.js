@@ -29,8 +29,9 @@ function scrapeUserId(){
 
 function showUserId(){
     chrome.storage.local.get('idData', function (data) {
+        const displayElement = document.getElementById('idDisplay');
         if (data){
-            console.log(data.idData);
+            displayElement.innerText=data.idData; 
         } 
     });
 }
