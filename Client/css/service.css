@@ -1,15 +1,4 @@
 body {
-<<<<<<< HEAD
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 500px;
-  width: 500px;
-}
-.carousel-container {
-  overflow: hidden;
-=======
   width: 350px;
   background: #231f20;
   color: rgba(223, 190, 106, 0.7);
@@ -47,29 +36,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
->>>>>>> seunghyun
 }
 
 .carousel {
   display: flex;
   transition: transform 0.5s ease-in-out;
 }
-<<<<<<< HEAD
-
-.carousel-item {
-  flex: 0 0 33.33%; /* 각 이미지의 너비 (3개씩 보여줄 것) */
-}
-
-.backBtn {
-  margin-top: 15px;
-}
-
-.backBtn a {
-  text-decoration: none;
-}
-/* 원하는 추가적인 스타일링 */
-/* 버튼 등 다른 요소들의 스타일링을 원한다면 여기에 추가하세요 */
-=======
 .carousel-item {
   text-align: center;
   flex: 0 0 33.33%; /* 각 이미지의 너비 (3개씩 보여줄 것) */
@@ -126,4 +98,3 @@ button:hover {
 .backBtn {
   border-radius: 30px;
 }
->>>>>>> seunghyun
