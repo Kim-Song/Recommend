@@ -147,22 +147,4 @@ button:hover {
 
 .backBtn {
   border-radius: 30px;
-
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-}
-
-table {
-  margin: 20px;
-  width: 100%;
-}
-th,
-td,
-tr {
-  align-items: center;
-  border: 1px solid rgba(223, 190, 106, 0);
-  text-align: left;
-
-  padding: 8px;
 }
