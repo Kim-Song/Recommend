@@ -1,5 +1,8 @@
 body {
-  width: 350px;
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+
   background: #231f20;
   color: rgba(223, 190, 106, 0.7);
   display: flex;
@@ -35,7 +38,7 @@ body {
   background-position: 99% 50%;
 }
 .recommend-youtube {
-  width: 350px;
+  width: 700px;
   overflow: hidden;
   display: flex;
   border: none;
@@ -45,7 +48,7 @@ body {
   justify-content: center;
 }
 .recommend-problem {
-  width: 350px;
+  width: 700px;
   display: flex;
   border: none;
   border: 1px solid rgba(223, 190, 106, 0.3);
@@ -97,7 +100,7 @@ body {
   cursor: pointer;
 }
 .btnClass {
-  width: 350px;
+  width: 700px;
 
   display: flex;
 
@@ -117,7 +120,7 @@ button {
   text-transform: uppercase;
   font-weight: 500;
   font-style: normal;
-  font-size: 0.625rem;
+  font-size: 10px;
   letter-spacing: 0.3em;
   color: rgba(223, 190, 106, 0.7);
   border-radius: 0;
@@ -133,7 +136,6 @@ button {
   background-position: 1% 50%;
   background-size: 300% 300%;
   text-decoration: none;
-
   border: none;
   border: 1px solid rgba(223, 190, 106, 0.3);
 }
@@ -141,10 +143,33 @@ button {
 button:hover {
   color: #fff;
   border: 1px solid rgba(223, 190, 106, 0);
-
   background-position: 99% 50%;
 }
 
 .backBtn {
   border-radius: 30px;
+  margin-top: 10px;
+}
+
+table {
+  margin: 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+thead {
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+tr {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+}
+td {
+  font-size: 12px;
 }
