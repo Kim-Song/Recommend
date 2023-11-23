@@ -22,7 +22,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 function scrapeUserId(){
     const userId = document.querySelector('ul > li > a').innerText;
     if (userId === "회원가입"){
-        alert("백준에 로그인 해주세요.");
+        chrome.tabs.update({ url: "https://www.acmicpc.net/login"});
     }
     return userId;
 }
