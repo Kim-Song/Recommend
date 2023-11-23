@@ -1,0 +1,168 @@
+body {
+  width: 350px;
+  background: #231f20;
+  color: rgba(223, 190, 106, 0.7);
+  display: flex;
+  flex-direction: column;
+
+  margin: 0 20px 20px 20px;
+  transition: background-color 1.5s ease;
+}
+
+.title {
+  padding: 10px;
+  font-size: 20px;
+  margin-bottom: 10px;
+  background: #333333;
+
+  color: rgba(223, 190, 106, 0.7);
+  transition: all 0.7s ease-out;
+  background: linear-gradient(
+    270deg,
+    rgba(223, 190, 106, 0.8),
+    rgba(146, 111, 52, 0.8),
+    rgba(34, 34, 34, 0),
+    rgba(34, 34, 34, 0)
+  );
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+}
+
+.title:hover {
+  color: #fff;
+  border: 1px solid rgba(223, 190, 106, 0);
+
+  background-position: 99% 50%;
+}
+.recommend-youtube {
+  width: 350px;
+  overflow: hidden;
+  display: flex;
+  border: none;
+  border: 1px solid rgba(223, 190, 106, 0.3);
+
+  flex-direction: column;
+  justify-content: center;
+}
+.recommend-problem {
+  width: 350px;
+  display: flex;
+  border: none;
+  border: 1px solid rgba(223, 190, 106, 0.3);
+  border-top: none;
+  flex-direction: column;
+  justify-content: center;
+}
+.youtube-title {
+  display: flex;
+  margin-top: 20px;
+  padding: 0 20px 0 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+.youtube-title span {
+  font-size: 20px;
+  font-weight: 500;
+}
+.refreshBtn {
+  border-radius: 100px;
+  display: flex;
+
+  background-color: rgba(223, 190, 106, 0.7);
+  color: #231f20;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+}
+.carousel {
+  display: flex;
+  transition: transform 0.7s ease-in-out;
+}
+.carousel-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 15px;
+  flex: 0 0 33.33%; /* 각 이미지의 너비 (3개씩 보여줄 것) */
+}
+.carousel-item img {
+  width: 95px;
+  border-radius: 50px;
+  height: 95px;
+  margin: 20px 0 20px 0;
+  cursor: pointer;
+}
+.btnClass {
+  width: 350px;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.nextClass {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+}
+button {
+  cursor: pointer;
+  display: inline-block;
+  width: 150px;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  color: rgba(223, 190, 106, 0.7);
+  border-radius: 0;
+  padding: 18px 20px;
+  transition: all 0.7s ease-out;
+  background: linear-gradient(
+    270deg,
+    rgba(223, 190, 106, 0.8),
+    rgba(146, 111, 52, 0.8),
+    rgba(34, 34, 34, 0),
+    rgba(34, 34, 34, 0)
+  );
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+  text-decoration: none;
+
+  border: none;
+  border: 1px solid rgba(223, 190, 106, 0.3);
+}
+
+button:hover {
+  color: #fff;
+  border: 1px solid rgba(223, 190, 106, 0);
+
+  background-position: 99% 50%;
+}
+
+.backBtn {
+  border-radius: 30px;
+
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  margin: 20px;
+  width: 100%;
+}
+th,
+td,
+tr {
+  align-items: center;
+  border: 1px solid rgba(223, 190, 106, 0);
+  text-align: left;
+
+  padding: 8px;
+}

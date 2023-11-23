@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Carousel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="./css/service.css" />
+    <!-- 외부 CSS 파일 링크 -->
+  </head>
+  <body>
+    <div class="title">
+      <h1>® RECOMM&lt;&ltEND</h1>
+    </div>
+
+    <div class="recommend-youtube">
+      <div class="youtube-title">
+        <span>recommend youtube</span>
+        <button class="refreshBtn">R</button>
+      </div>
+
+      <div class="carousel">
+        <div class="carousel-item"><img src="./assets/carousel1.png" />one</div>
+
+        <div class="carousel-item"><img src="./assets/carousel2.png" />two</div>
+
+        <div class="carousel-item">
+          <img src="./assets/carousel3.png" />three
+        </div>
+        <div class="carousel-item">
+          <img src="./assets/carousel4.png" />four
+        </div>
+        <div class="carousel-item">
+          <img src="./assets/carousel5.png" />five
+        </div>
+        <div class="carousel-item"><img src="./assets/carousel1.png" />six</div>
+        <div class="carousel-item">
+          <img src="./assets/carousel2.png" />seven
+        </div>
+        <div class="carousel-item">
+          <img src="./assets/carousel3.png" />eight
+        </div>
+        <div class="carousel-item">
+          <img src="./assets/carousel4.png" />nine
+        </div>
+      </div>
+      <div class="btnClass">
+        <div class="nextClass">
+          <button class="prev">Previous</button>
+          <button class="next">Next</button>
+        </div>
+      </div>
+    </div>
+    <div class="recommend-problem">
+      <div class="youtube-title">
+        <span>recommend Problem</span>
+        <button class="refreshBtn" id="updateButton">R</button>
+      </div>
+      <table id="randomQuestionsTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>이름</th>
+            <th>진행률</th>
+          </tr>
+        </thead>
+        <tbody id="randomQuestionsBody">
+          <!-- 여기에 무작위 질문이 추가됩니다 -->
+        </tbody>
+      </table>
+    </div>
+    <a class="backBtn" href="popup.html"
+      ><button class="backBtn">back</button></a
+    >
+    <script src="./script/service.js"></script>
+    <script src="/script/recommendData.js"></script>
+    <!-- 외부 JavaScript 파일 링크 -->
+  </body>
+</html>
