@@ -54,10 +54,4 @@ function showCode() {
             displayElement.innerText=data.sourceData;
         } 
     });
-    chrome.storage.local.get('idData', function (data) {
-        const displayElement = document.getElementById('idDisplay');
-        if (data && data.idData) {
-            displayElement.innerText=data.idData;
-        } 
-    });
 }
