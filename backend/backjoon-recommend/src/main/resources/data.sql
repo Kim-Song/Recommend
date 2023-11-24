@@ -1,5 +1,5 @@
 LOAD DATA LOCAL INFILE
-'/Users/user/Desktop/sejong/3학년 2학기/캡스톤디자인/PP_Baekjoon_Problem_.csv'
+'./src/main/resources/PP_Baekjoon_Problem_.csv'
 INTO TABLE problem
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
