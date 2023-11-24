@@ -22,15 +22,29 @@ function executeScriptOnTab(tabId, scriptFunction, callback) {
 }
 
 function scrapeCode() {
-    const lines = document.querySelector('body').innerText.split("\n");
-    const codeLines = [];
+    let lines = document.querySelector('body').innerText.split("\n");
+    let codeLines = [];
 
-    if (lines[10].charAt(0)==="#"){
-        for (let i = 10; i <= lines.length - 72; i += 2) {
-            codeLines.push(lines[i]);
+    let endIdx=0;
+    for (let i=11; i<lines.length; i++){
+        if (lines[i].startsWith("복사다운로드")){
+            endIdx=i-1;
+            break;
         }
+        if (lines[i].startsWith("소스 코드 공개")){
+            endIdx=i-1;
+            break;
+        }
+    }
+
+    for (let i=10; i<=endIdx; i+=2){
+        codeLines.push(lines[i]);
+    }
+    
+    if (codeLines.length>0){
         return codeLines.join("\n");
-    } else {
+    }
+    else {
         return "접근할 수 없는 제출 번호입니다.";
     }
 }
