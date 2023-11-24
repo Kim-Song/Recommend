@@ -73,6 +73,11 @@ body {
   flex-direction: column;
   margin-left: 130px;
 }
+.logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
 .recommend-youtube {
   width: 500px;
   overflow: hidden;

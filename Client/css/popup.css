@@ -42,9 +42,16 @@ body {
   transition: all 0.3s ease-in;
 }
 
+.logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
 .title {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
   padding: 10px;
   font-size: 20px;
   margin-bottom: 10px;
