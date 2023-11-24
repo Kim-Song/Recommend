@@ -2,6 +2,7 @@ package sejong.capstone.backjoonrecommend.domain;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -14,6 +15,10 @@ public class Code {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    private String backjoon_id;
+    private Long number;
+    private Long time;
+    private Long memory;
+    private String language;
+    @Column(columnDefinition = "TEXT")
     private String code;
 }

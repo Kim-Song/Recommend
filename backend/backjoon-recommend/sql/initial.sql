@@ -1,1 +1,0 @@
-CREATE OR REPLACE DATABASE backjoon_reco

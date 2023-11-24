@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import sejong.capstone.backjoonrecommend.domain.User;
 import sejong.capstone.backjoonrecommend.dto.client.UserClientDto;
+import sejong.capstone.backjoonrecommend.service.AiService;
 import sejong.capstone.backjoonrecommend.service.SolvedAPIService;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -14,7 +15,7 @@ public class UserController {
 
     private final SolvedAPIService solvedAPIService;
 
-    public UserController(SolvedAPIService solvedAPIService) {
+    public UserController(SolvedAPIService solvedAPIService, AiService aiService) {
         this.solvedAPIService = solvedAPIService;
     }
 
