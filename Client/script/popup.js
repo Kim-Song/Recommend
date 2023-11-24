@@ -1,18 +1,28 @@
-document.getElementById('analyzeButton').addEventListener('click', handleButtonClick);
+document.getElementById('analyzeButton').addEventListener('click', analyzeButtonHandler);
 
-function handleButtonClick() {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      const submitNumber = document.getElementById('submitNumber').value;
-      const onUpdatedCallback = function (tabId, info) {
-          if (info.status === 'complete') {
-              executeScriptOnTab(tabId, scrapeCode, handleScriptResults);
-              chrome.tabs.onUpdated.removeListener(onUpdatedCallback);
+function analyzeButtonHandler() {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        const currentTab = tabs[0];
+        const submitNumber = document.getElementById('submitNumber').value;
+          
+        const onUpdatedCallback = function (tabId, info) {
+              if (info.status === 'complete') {
+                  chrome.tabs.onUpdated.removeListener(onUpdatedCallback);
+                  executeScriptOnTab(currentTab.id, scrapeTargetData, handleScriptResults);
+              }
+          };
+          chrome.tabs.onUpdated.addListener(onUpdatedCallback);
+  
+          const targetURL = "https://www.acmicpc.net/source/" + submitNumber ;
+          if (currentTab.url !== targetURL){
+              chrome.tabs.update({ url: targetURL});
+          }  
+          else {
+            executeScriptOnTab(currentTab.id, scrapeTargetData, handleScriptResults);
           }
-      };
-      chrome.tabs.onUpdated.addListener(onUpdatedCallback);
-      chrome.tabs.update({ url: "https://www.acmicpc.net/source/" + submitNumber });
-  });
-}
+      
+    });
+  }
 
 function executeScriptOnTab(tabId, scriptFunction, callback) {
     chrome.scripting.executeScript({
@@ -21,7 +31,7 @@ function executeScriptOnTab(tabId, scriptFunction, callback) {
     }, callback);
 }
 
-function scrapeCode() {
+function scrapeTargetData(){
     let lines = document.querySelector('body').innerText.split("\n");
     let codeLines = [];
 
@@ -41,11 +51,17 @@ function scrapeCode() {
         codeLines.push(lines[i]);
     }
     
-    if (codeLines.length>0){
-        return codeLines.join("\n");
-    }
-    else {
+    if (codeLines.length==0){
         return "접근할 수 없는 제출 번호입니다.";
+    }
+
+    else {
+        let targetData = [];
+        targetData.push(codeLines.join("\n"));
+        targetData.push(document.querySelector('tbody').innerText.split("\t")[5]);
+        targetData.push(document.querySelector('tbody').innerText.split("\t")[6]);
+        targetData.push(document.querySelector('tbody').innerText.split("\t")[7]);
+        return targetData.join("\t");
     }
 }
 
@@ -55,17 +71,25 @@ function handleScriptResults(results) {
          return;
     }
 
+    console.log(results[0].result.split("\t"));
+
     if (results && results[0]) {
-        chrome.storage.local.set({ sourceData: results[0].result });
+        let targetData = results[0].result.split("\t");
+        chrome.storage.local.set({ 
+            code: targetData[0],
+            memoryUsage: targetData[1],
+            timeUsage: targetData[2], 
+            language: targetData[3],
+        });
         showCode();
     }
 }
 
 function showCode() {
-    chrome.storage.local.get('sourceData', function (data) {
+    chrome.storage.local.get(null, function (data) {
         const displayElement = document.getElementById('dataDisplay');
-        if (data && data.sourceData) {
-            displayElement.innerText=data.sourceData;
+        if (data && data.code) {
+            displayElement.innerText=data.code+"\n\n"+data.memoryUsage+"\n\n"+data.timeUsage+"\n\n"+data.language;
         } 
         displayElement.classList.add('styled-text');
     });
