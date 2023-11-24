@@ -15,4 +15,24 @@ public class CodeRepository {
     public void save(Code code) {
         em.persist(code);
     }
+
+    public Code getBestCodeByBigO(Long problemNumber, String language) {
+        return em.createQuery(
+                        "select m from Code m where m.number = :problemNumber and m.language = :language order by m.time asc",
+                        Code.class)
+                .setParameter("problemNumber", problemNumber)
+                .setParameter("language", language)
+                .getResultList()
+                .get(0);
+    }
+
+    public Code getBestCodeBySpaceComplexity(Long problemNumber, String language) {
+        return em.createQuery(
+                        "select m from Code m where m.number = :problemNumber and m.language = :language order by m.time asc",
+                        Code.class)
+                .setParameter("problemNumber", problemNumber)
+                .setParameter("language", language)
+                .getResultList()
+                .get(0);
+    }
 }

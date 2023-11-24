@@ -40,15 +40,21 @@ public class CodeAnalysisController {
 
         codeRepository.save(inputCode);
 
-        String bigO = chatGPTService.getAnalysis(code, Analysis.BIG_O, null);
-        System.out.println("1");
-        String spaceComplex = chatGPTService.getAnalysis(code, Analysis.SPACE_COMPLEX, null);
-        System.out.println("2");
-        String whatAlgo = chatGPTService.getAnalysis(code, Analysis.WHAT_ALGO, null);
+        String totalAnalysis = chatGPTService.getAnalysis(code, Analysis.BIG_O_AND_SPACE_COMPLEX_AND_WHAT_ALGO, null);
+        System.out.println(totalAnalysis);
+        String[] split = totalAnalysis.split(",");
+        String bigO = split[0];
+        String spaceComplex = split[1];
+        String whatAlgo = split[2];
         System.out.println("3");
-        String compareBigO = chatGPTService.getAnalysis(code, Analysis.COMPARE_BIG_O, null);
+
+        Code bestCode1 = codeRepository.getBestCodeBySpaceComplexity(number, language);
+        String compareBigO = chatGPTService.getAnalysis(code, Analysis.COMPARE_BIG_O, bestCode1);
         System.out.println("4");
-        String compareSpaceComplex = chatGPTService.getAnalysis(code, Analysis.COMPARE_SPACE_COMPLEX, null);
+
+        Code bestCode2 = codeRepository.getBestCodeBySpaceComplexity(number, language);
+        String compareSpaceComplex = chatGPTService.getAnalysis(code, Analysis.COMPARE_SPACE_COMPLEX,
+                bestCode2);
         System.out.println("5");
 
         AnalysisClientDto analysisClientDto = new AnalysisClientDto();
@@ -57,9 +63,10 @@ public class CodeAnalysisController {
         analysisResult.setBigO(bigO);
         analysisResult.setSpaceComplexDegree(spaceComplex);
         analysisResult.setWhatAlgo(whatAlgo);
-        analysisResult.setCompareOtherBigOCode("");
+
+        analysisResult.setCompareOtherBigOCode(bestCode1.getCode());
         analysisResult.setCompareOtherBigO(compareBigO);
-        analysisResult.setCompareOtherSpaceComplexDegreeCode("");
+        analysisResult.setCompareOtherSpaceComplexDegreeCode(bestCode2.getCode());
         analysisResult.setCompareOtherSpaceComplexDegree(compareSpaceComplex);
 
         /*
