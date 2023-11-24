@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/popup.css" />
     <title>PopUp</title>
   </head>
@@ -13,16 +12,19 @@
       <h1>® RECOMM&lt;&ltEND</h1>
       <div id="idDisplay"></div>
     </div>
+    <div class="navbar">
+      <a href="/popup.html">Home</a>
+
+      <a href="/service.html">Services</a>
+    </div>
     <div class="analyzeContent">
       <p>분석하고 싶은 코드의 제출 번호를 입력해주세요!</p>
-      <input type="text" id="submitNumber" placeholder="0000000" />
-
+      <div class="inputDataContent">
+        <input type="text" id="submitNumber" placeholder="0000000" />
+        <button id="analyzeButton">analyze</button>
+      </div>
       <div id="dataDisplay"></div>
-      <button id="analyzeButton">analyze</button>
 
-      <form action="service.html" method="get">
-        <button>service</button>
-      </form>
       <script src="./script/background.js"></script>
       <script src="./script/popup.js"></script>
     </div>

@@ -1,57 +1,94 @@
+@import "/css/reset.css";
+@import "/css/variables.css";
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Open+Sans:wght@400;600&display=swap");
 body {
   width: 700px;
   display: flex;
   flex-direction: column;
+  background: var(--background--color);
+  color: var(--font-color);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 
-  background: #231f20;
-  color: rgba(223, 190, 106, 0.7);
-  display: flex;
-  flex-direction: column;
-
-  margin: 0 20px 20px 20px;
   transition: background-color 1.5s ease;
 }
 
 .title {
   padding: 10px;
+  width: 100%;
+  font-family: "Black Han Sans";
+  height: 100%;
   font-size: 20px;
-  margin-bottom: 10px;
   background: #333333;
-
-  color: rgba(223, 190, 106, 0.7);
+  display: flex;
+  justify-content: space-between;
+  background: var(--font-color);
+  color: var(--background--color);
   transition: all 0.7s ease-out;
   background: linear-gradient(
     270deg,
-    rgba(223, 190, 106, 0.8),
-    rgba(146, 111, 52, 0.8),
-    rgba(34, 34, 34, 0),
-    rgba(34, 34, 34, 0)
+    var(--gradation-color4),
+    var(--gradation-color3),
+    var(--gradation-color2),
+    var(--gradation-color1)
   );
   background-position: 1% 50%;
   background-size: 300% 300%;
 }
 
 .title:hover {
-  color: #fff;
-  border: 1px solid rgba(223, 190, 106, 0);
-
+  color: var(--background--color);
+  border: 1px solid var(--background--color);
   background-position: 99% 50%;
 }
+.navbar {
+  position: fixed;
+  height: 100%;
+  margin-top: 50px;
+  top: 50%; /* 상황에 맞게 조절하세요 */
+  transform: translateY(-50%);
+  background-color: none;
+  padding: 20px 10px 20px 10px;
+}
+
+.navbar a {
+  display: block;
+  font-size: small;
+
+  padding: 20px;
+}
+
+.navbar a:last-child {
+  background-color: var(--background--color);
+  color: var(--font-color);
+  border-right: 1px solid var(--border-color);
+}
+.navbar a:hover {
+  background-color: var(--font-color);
+  color: white;
+  transition: all 0s ease-in;
+}
+.analyzeContent {
+  display: flex;
+  flex-direction: column;
+  margin-left: 130px;
+}
 .recommend-youtube {
-  width: 700px;
+  width: 500px;
   overflow: hidden;
   display: flex;
   border: none;
-  border: 1px solid rgba(223, 190, 106, 0.3);
-
+  font-family: "Black Han Sans";
   flex-direction: column;
   justify-content: center;
+
+  border-bottom: 1px solid var(--border-color);
 }
 .recommend-problem {
-  width: 700px;
+  width: 500px;
   display: flex;
   border: none;
-  border: 1px solid rgba(223, 190, 106, 0.3);
+  font-family: "Black Han Sans";
   border-top: none;
   flex-direction: column;
   justify-content: center;
@@ -64,6 +101,7 @@ body {
   align-items: center;
 }
 .youtube-title span {
+  text-decoration: underline;
   font-size: 20px;
   font-weight: 500;
 }
@@ -71,8 +109,6 @@ body {
   border-radius: 100px;
   display: flex;
 
-  background-color: rgba(223, 190, 106, 0.7);
-  color: #231f20;
   justify-content: center;
   align-items: center;
   padding: 0;
@@ -82,7 +118,12 @@ body {
 .carousel {
   display: flex;
   transition: transform 0.7s ease-in-out;
+  margin-bottom: 20px;
 }
+.carousel-frame {
+  position: relative;
+}
+
 .carousel-item {
   display: flex;
   flex-direction: column;
@@ -100,55 +141,64 @@ body {
   cursor: pointer;
 }
 .btnClass {
-  width: 700px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
 
   display: flex;
-
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .nextClass {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 10px;
 }
+.prev,
+.next {
+  background-color: transparent;
+
+  opacity: 0.7;
+  border: none;
+  font-size: 20px;
+}
 button {
-  cursor: pointer;
   display: inline-block;
-  width: 150px;
   background: transparent;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 400;
   font-style: normal;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.3em;
-  color: rgba(223, 190, 106, 0.7);
+  color: var(--font-color);
+  cursor: pointer;
   border-radius: 0;
-  padding: 18px 20px;
-  transition: all 0.7s ease-out;
+  padding: 10px 5px;
+  transition: all 0.3s ease-out;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background: linear-gradient(
     270deg,
-    rgba(223, 190, 106, 0.8),
-    rgba(146, 111, 52, 0.8),
-    rgba(34, 34, 34, 0),
-    rgba(34, 34, 34, 0)
+    var(--gradation-color1),
+    var(--gradation-color2),
+    var(--gradation-color4),
+    var(--gradation-color4)
   );
   background-position: 1% 50%;
   background-size: 300% 300%;
   text-decoration: none;
+  margin-bottom: 10px;
   border: none;
-  border: 1px solid rgba(223, 190, 106, 0.3);
+  border: 1px solid var(--border-color);
 }
 
 button:hover {
   color: #fff;
   border: 1px solid rgba(223, 190, 106, 0);
+  transform: scale(1.1);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   background-position: 99% 50%;
-}
-
-.backBtn {
-  border-radius: 30px;
-  margin-top: 10px;
 }
 
 table {
