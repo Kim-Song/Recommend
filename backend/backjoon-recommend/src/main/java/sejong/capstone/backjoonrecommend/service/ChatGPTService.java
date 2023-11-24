@@ -29,17 +29,20 @@ public class ChatGPTService {
             if (bestCode == null) {
                 return "기능 준비 중 입니다.";
             }
-            extraQuestion = "Simply compare and analyze the time complexity of this code and that code in less than 30 characters. Please explain it in terms of items rather than lines in Korean.";
+            extraQuestion = " Simply compare and analyze the time complexity of preceding code and following code in less than 30 characters. Please explain it in terms of items rather than lines in Korean. ";
         }
         if (analysis == Analysis.COMPARE_SPACE_COMPLEX) {
             if (bestCode == null) {
                 return "기능 준비 중 입니다.";
             }
-            extraQuestion = "Simply compare and analyze the space complexity of this code and that code in 30 characters or less and explain it in terms of items rather than lines in Korean.";
+            extraQuestion = " Simply compare and analyze the space complexity of preceding code and following code in 30 characters or less and explain it in terms of items rather than lines in Korean. ";
         }
 
         if (analysis == Analysis.COMPARE_BIG_O || analysis == Analysis.COMPARE_SPACE_COMPLEX) {
             extraQuestion += bestCode.getCode();
+            if (code.equals(bestCode.getCode())) {
+                return "같은 코드 입니다. 당신의 코드가 지금까지 최선의 코드입니다.";
+            }
         }
 
         RestTemplate restTemplate = new RestTemplate();
