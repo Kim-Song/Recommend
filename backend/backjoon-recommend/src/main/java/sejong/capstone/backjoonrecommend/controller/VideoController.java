@@ -22,7 +22,8 @@ public class VideoController {
 
     @GetMapping("/video")
     private VideoLinkClientDto getVideo(@RequestParam String id) {
-        List<Video> videos = videoRepository.findByAlgorithm("데이크스트라");
+        // id를 가지고 취약 알고리즘을 알아낸다.
+        List<Video> videos = videoRepository.findByAlgorithm("그래프");
         VideoLinkClientDto videoLinkClientDto = new VideoLinkClientDto();
         List<String> data = new ArrayList<>();
         for (Video v : videos) {

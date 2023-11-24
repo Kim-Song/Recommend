@@ -26,4 +26,10 @@ public class CodeAnalysisController {
         bigOClientDto.setData(bigO);
         return bigOClientDto;
     }
+
+    @PostMapping("/code")
+    private void postCode() {
+
+    }
+
 }
