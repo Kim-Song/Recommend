@@ -98,7 +98,6 @@ function handleScriptResults(results) {
             body: JSON.stringify(requestData),
         })
         .then((response) => {
-            //console.log(response.headers.get("Content-Type"));
             return response.json();
         })
         .then((data) => {

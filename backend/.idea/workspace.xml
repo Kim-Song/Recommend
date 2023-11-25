@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="488a6158-bd0b-40f5-99ca-7491edae5cc3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backjoon-recommend/src/main/java/sejong/capstone/backjoonrecommend/CorsConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/script/popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/script/popup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backjoon-recommend/src/main/java/sejong/capstone/backjoonrecommend/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backjoon-recommend/src/main/java/sejong/capstone/backjoonrecommend/CorsConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +82,9 @@
       <option name="presentableId" value="Default" />
       <updated>1700909632500</updated>
       <workItem from="1700909633506" duration="4946000" />
-      <workItem from="1700916514601" duration="343000" />
+      <workItem from="1700916514601" duration="1697000" />
+      <workItem from="1700922510644" duration="616000" />
+      <workItem from="1700926220538" duration="186000" />
     </task>
     <servers />
   </component>

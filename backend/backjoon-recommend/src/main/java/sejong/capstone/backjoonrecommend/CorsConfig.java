@@ -12,7 +12,20 @@ public class CorsConfig implements WebMvcConfigurer {
         registry.addMapping("/analysis")
                 .allowedOrigins("chrome-extension://hbmbmlflnmmaahlibbddokehloeodpmd")
                 .allowedMethods("POST")
+                .allowedHeaders("")
+                .allowCredentials(true);
+
+        registry.addMapping("/problem")
+                .allowedOrigins("chrome-extension://hbmbmlflnmmaahlibbddokehloeodpmd")
+                .allowedMethods("GET")
+                .allowedHeaders("")
+                .allowCredentials(true);
+
+        registry.addMapping("/video")
+                .allowedOrigins("chrome-extension://hbmbmlflnmmaahlibbddokehloeodpmd")
+                .allowedMethods("GET")
                 .allowedHeaders("*")
                 .allowCredentials(true);
+
     }
 }
