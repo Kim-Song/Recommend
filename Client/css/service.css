@@ -86,8 +86,6 @@ body {
   font-family: "Black Han Sans";
   flex-direction: column;
   justify-content: center;
-
-  border-bottom: 1px solid var(--border-color);
 }
 .recommend-problem {
   width: 500px;
@@ -120,8 +118,9 @@ body {
   width: 30px;
   height: 30px;
 }
-.carousel {
+#carousel {
   display: flex;
+  cursor: pointer;
   transition: transform 0.7s ease-in-out;
   margin-bottom: 20px;
 }
@@ -134,17 +133,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   text-align: center;
-  font-size: 15px;
+  font-size: 20px;
   flex: 0 0 33.33%; /* 각 이미지의 너비 (3개씩 보여줄 것) */
 }
-.carousel-item img {
-  width: 95px;
-  border-radius: 50px;
-  height: 95px;
-  margin: 20px 0 20px 0;
-  cursor: pointer;
-}
+
 .btnClass {
   position: absolute;
   top: 50%;
@@ -205,26 +199,35 @@ button:hover {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   background-position: 99% 50%;
 }
-
 table {
-  margin: 20px;
-
-  display: flex;
-  flex-direction: column;
-}
-thead {
-  font-size: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-tr {
-  display: flex;
-  justify-content: space-around;
-  padding: 5px;
-}
-td {
+  width: 100%;
   font-size: 12px;
+  margin-bottom: 30px;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: center;
+  width: auto; /* 자동으로 셀 크기 조정 */
+  white-space: nowrap; /* 긴 문자열이 셀을 벗어나지 않도록 함 */
+  overflow: hidden; /* 셀 내부의 내용이 넘칠 경우 가림 */
+  text-overflow: ellipsis; /* 셀 내부의 내용이 넘칠 경우 생략 부호(...) 표시 */
+}
+
+tr:hover {
+  transition: all 0.3s ease-out;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  scale: 1.03;
+
+  border-bottom: 1px solid var(--border-color);
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+thead tr {
+  border-bottom: solid 2px var(--border-color);
+  margin-bottom: 10px;
 }

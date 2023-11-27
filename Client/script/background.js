@@ -29,11 +29,11 @@ function scrapeUserId() {
   return userId;
 }
 
-function showUserId(){
-    chrome.storage.local.get('idData', function (data) {
-        const displayElement = document.getElementById('idDisplay');
-        if (data){
-            displayElement.innerText=data.idData; 
-        } 
-    });
+function showUserId() {
+  chrome.storage.local.get("idData", function (data) {
+    const displayElement = document.getElementById("idDisplay");
+    if (data) {
+      displayElement.innerText = data.idData;
+    }
+  });
 }
