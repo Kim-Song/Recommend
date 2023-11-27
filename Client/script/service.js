@@ -3,6 +3,9 @@ const carouselItems = document.querySelectorAll(".carousel-item");
 const totalItems = carouselItems.length;
 const itemWidth = carouselItems[0].offsetWidth;
 const itemsPerSlide = 3; // 한 번에 보여지는 아이템 개수
+
+
+
 let url1 = "http://localhost:8080/problem?id=wwqw58";
 fetch(url1)
   .then((response) => {
@@ -12,13 +15,17 @@ fetch(url1)
     console.log(data);
   });
 let url2 = "http://localhost:8080/video?id=wwqw58";
-fetch(url2)
+
+setTimeout(() => {
+  fetch(url2)
   .then((response) => {
     return response.json();
   })
   .then((data) => {
     console.log(data);
-  });
+  });  
+}, 1000);
+
 
 let currentIndex = 0;
 
