@@ -125,7 +125,7 @@ body {
 .carousel-frame {
   display: flex;
   justify-content: center;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 .carousel {
   display: flex;
@@ -135,7 +135,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 16px;
   cursor: pointer;
+  margin-top: 20px;
   margin-right: 30px;
   transition: transform 0.3s, filter 0.3s; /* 변화에 트랜지션 적용 */
 

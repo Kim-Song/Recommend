@@ -50,7 +50,7 @@ function showSlide(index) {
     thumbnailImage.style.borderRadius = "10px";
     const weakAlgorithmElement = document.createElement("div");
     weakAlgorithmElement.textContent = item.weakAlgorithm;
-    weakAlgorithmElement.style.marginTop = "5px"; // 텍스트에 위쪽 마진 추가
+    weakAlgorithmElement.style.marginTop = "10px"; // 텍스트에 위쪽 마진 추가
 
     linkElement.appendChild(thumbnailImage);
     linkElement.appendChild(weakAlgorithmElement); // weakAlgorithm 추가
