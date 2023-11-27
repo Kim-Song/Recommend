@@ -1,69 +1,84 @@
-// contentScript.js
-
 let currentIndex = 0;
-const itemWidth = 300; // 아이템의 가로 크기를 임의로 설정했습니다. 실제 값에 맞게 수정해주세요.
-const itemsPerSlide = 1; // 한 번에 보여줄 아이템의 개수를 설정해주세요.
+const itemsPerSlide = 3; // 한 번에 보여줄 아이템의 개수를 설정해주세요.
 let totalItems = 0;
-const carousel = document.getElementById("carousel");
+const carousel = document.querySelector(".carousel");
+const intervalTime = 2000; // 3초
+let timer; // 타이머 변수
+let apiData; // 데이터를 담을 변수
 
-// 데이터를 불러와 케러셀 아이템 생성하고, 슬라이드 기능을 추가하는 함수
-function createCarouselWithSlide() {
-  let url2 = "http://localhost:8080/video?id=wwqw58";
-  fetch(url2)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      const apiData = data.data;
-      totalItems = apiData.length; // 데이터의 개수를 전역 변수에 저장합니다.
-
-      apiData.forEach((item) => {
-        const link = `https://www.youtube.com/watch?v=${item.link}`;
-        const carouselItem = document.createElement("div");
-        carouselItem.classList.add("carousel-item");
-
-        const linkElement = document.createElement("span");
-        linkElement.href = link;
-        linkElement.textContent = item.weakAlgorithm;
-
-        linkElement.addEventListener("click", (event) => {
-          event.preventDefault();
-          chrome.tabs.create({ url: link });
-        });
-
-        carouselItem.appendChild(linkElement);
-        carousel.appendChild(carouselItem); // 슬라이드 기능을 추가할 캐러셀 요소에 아이템을 추가합니다.
-      });
-
-      // 케러셀 슬라이드 기능 추가
-      document.querySelector(".prev").addEventListener("click", prev);
-      document.querySelector(".next").addEventListener("click", next);
-
-      // 아이템 수가 10개를 넘어갈 경우, 인덱스를 처음으로 되돌립니다.
-      if (totalItems > 10) {
-        currentIndex = totalItems - 10; // 처음 인덱스를 설정합니다.
-        showSlide();
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
+function startCarousel() {
+  timer = setInterval(() => {
+    showNextItems();
+  }, intervalTime);
 }
 
-function showSlide() {
-  const newPosition = currentIndex * itemWidth * -1;
-  carousel.style.transform = `translateX(${newPosition}px)`;
+function stopCarousel() {
+  clearInterval(timer);
 }
 
-function next() {
-  currentIndex = (currentIndex + itemsPerSlide) % totalItems;
-  showSlide();
+function showNextItems() {
+  const nextIndex = (currentIndex + itemsPerSlide) % totalItems;
+  showSlide(nextIndex);
 }
 
-function prev() {
-  currentIndex = (currentIndex - itemsPerSlide + totalItems) % totalItems;
-  showSlide();
+function showSlide(index) {
+  currentIndex = index;
+
+  carousel.innerHTML = "";
+
+  const group = apiData.slice(index, index + itemsPerSlide);
+  group.forEach((item) => {
+    const link = `https://www.youtube.com/watch?v=${item.link}`;
+    const thumbnailUrl = `https://img.youtube.com/vi/${item.link}/hqdefault.jpg`; // 썸네일 이미지 URL
+
+    const carouselItem = document.createElement("div");
+    carouselItem.classList.add("carousel-item");
+
+    const linkElement = document.createElement("a");
+    linkElement.classList.add("carousel-link");
+    linkElement.href = link;
+    linkElement.target = "_blank";
+    linkElement.style.display = "flex";
+    linkElement.style.flexDirection = "column";
+    linkElement.style.alignItems = "center"; // 이미지와 텍스트를 수직 가운데 정렬
+
+    const thumbnailImage = document.createElement("img");
+    thumbnailImage.src = thumbnailUrl;
+    thumbnailImage.alt = item.weakAlgorithm;
+    thumbnailImage.style.width = "120px"; // 이미지 너비 설정
+    thumbnailImage.style.height = "80px"; // 이미지 높이 설정
+    thumbnailImage.style.borderRadius = "10px";
+    const weakAlgorithmElement = document.createElement("div");
+    weakAlgorithmElement.textContent = item.weakAlgorithm;
+    weakAlgorithmElement.style.marginTop = "5px"; // 텍스트에 위쪽 마진 추가
+
+    linkElement.appendChild(thumbnailImage);
+    linkElement.appendChild(weakAlgorithmElement); // weakAlgorithm 추가
+    carouselItem.appendChild(linkElement);
+    carousel.appendChild(carouselItem);
+  });
 }
 
-// 페이지 로드 시 케러셀 생성과 슬라이드 초기화
-window.addEventListener("DOMContentLoaded", createCarouselWithSlide);
+carousel.addEventListener("mouseenter", () => {
+  stopCarousel();
+});
+
+carousel.addEventListener("mouseleave", () => {
+  startCarousel();
+});
+
+let url2 = "http://localhost:8080/video?id=wwqw58";
+fetch(url2)
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    apiData = data.data;
+    totalItems = apiData.length;
+
+    startCarousel(); // 캐러셀 시작
+    showSlide(currentIndex); // 초기 아이템 표시
+  })
+  .catch((error) => {
+    console.error("Error fetching data:", error);
+  });

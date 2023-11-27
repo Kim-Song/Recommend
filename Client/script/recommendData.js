@@ -11,7 +11,8 @@ fetch(url)
     apiData.forEach((item) => {
       const row = document.createElement("tr");
       row.addEventListener("click", () => {
-        window.location.href = `https://www.acmicpc.net/problem/${item.number}`;
+        window.open(`https://www.acmicpc.net/problem/${item.number}`, "_blank");
+        console.log(item.number);
       });
 
       const idCell = document.createElement("td");
