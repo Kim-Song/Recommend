@@ -27,12 +27,30 @@ body {
 .navbar a {
   display: block;
   font-size: small;
-
   padding: 20px;
 }
 
+#peronsalAnalyze {
+  display: flex;
+  justify-content: space-around;
+}
+
+#analyze-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#timeComplexity,
+#spaceComplexity,
+#algorithm,
+#hint {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .navbar a:first-child {
-  background-color: var(--background--color);
+  background-color: none;
   color: var(--font-color);
   border-right: 1px solid var(--border-color);
 }

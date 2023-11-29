@@ -158,20 +158,95 @@ function handleScriptResults2(results) {
 }
 
 function showResponse(data) {
-  //힌트 api response 보고 수정해줘야 함
+  const createLabelDiv = (text) => {
+    const labelDiv = document.createElement("div");
+    labelDiv.innerText = text;
+    labelDiv.style.marginBottom = "5px"; // Add margin-bottom to the div
+    labelDiv.style.display = "flex"; // Set display to flex for horizontal layout
+    labelDiv.style.justifyContent = "space-between"; // Arrange content with space-between
+    labelDiv.style.alignItems = "center"; // Center align items vertically
+    return labelDiv;
+  };
 
+  // Insert labels before the content set by innerText
+  const timeComplexityDiv = document.getElementById("timeComplexity");
+  const spanTimeComplexity = createLabelDiv("Time");
+  timeComplexityDiv.parentNode.insertBefore(
+    spanTimeComplexity,
+    timeComplexityDiv
+  );
+
+  const spaceComplexityDiv = document.getElementById("spaceComplexity");
+  const spanSpaceComplexity = createLabelDiv("Space");
+  spaceComplexityDiv.parentNode.insertBefore(
+    spanSpaceComplexity,
+    spaceComplexityDiv
+  );
+
+  const algorithmDiv = document.getElementById("algorithm");
+  const spanAlgorithm = createLabelDiv("Algorithm");
+  algorithmDiv.parentNode.insertBefore(spanAlgorithm, algorithmDiv);
+
+  // Create Hint div and set content to "Hint"
+  const hintDiv = document.getElementById("hint");
+  const spanHint = createLabelDiv("Hint");
+  hintDiv.parentNode.insertBefore(spanHint, hintDiv);
+
+  // Set text content using innerText
   document.getElementById("timeComplexity").innerText = data.bigO;
   document.getElementById("spaceComplexity").innerText =
     data.spaceComplexDegree;
   document.getElementById("algorithm").innerText = data.whatAlgo;
+  document.getElementById("hint").innerText = "hint";
+  // Apply styles to the div elements (timeComplexity, spaceComplexity, algorithm)
+  [timeComplexityDiv, spaceComplexityDiv, algorithmDiv, hintDiv].forEach(
+    (div) => {
+      div.style.width = "40px"; // Set a fixed width
+      div.style.height = "40px"; // Set a fixed height
+      div.style.border = "1px solid #ccc";
+      div.style.display = "flex";
+      div.style.justifyContent = "center";
+      div.style.alignItems = "center";
+      div.style.padding = "10px";
+      div.style.fontSize = "10px";
+      div.style.borderRadius = "5px";
+      div.style.textAlign = "center";
+      div.style.marginBottom = "15px";
+      div.style.boxShadow = "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
+    }
+  );
+  // Create a function to handle the click event
+  const handleHintClick = () => {
+    alert("This is a hint!");
+  };
+
+  // Apply hover effect and click functionality to the hintDiv
+  hintDiv.addEventListener("mouseenter", () => {
+    hintDiv.style.backgroundColor = "#f0f0f0";
+    hintDiv.style.scale = "1.1";
+    hintDiv.style.transition = "all 0.3s ease-in";
+    hintDiv.style.cursor = "pointer";
+  });
+
+  hintDiv.addEventListener("mouseleave", () => {
+    hintDiv.style.backgroundColor = "transparent";
+  });
+
+  hintDiv.addEventListener("click", handleHintClick);
+
+  // Add class to the parent container
   document.getElementById("peronsalAnalyze").classList.add("styled-text");
 
+  // Set text and add class for other elements
+  document.getElementById("bestTimeComplexityTitle").innerText =
+    "bestTimeComplexity";
   document.getElementById("bestTimeComplexityCode").innerText =
     data.compareOtherBigOCode;
   document.getElementById("bestTimeComplexityWords").innerText =
     data.compareOtherBigO;
   document.getElementById("bestTimeComplexity").classList.add("styled-text");
-
+  document.getElementById("bestSpaceComplexityTitle").innerText =
+    "bestSpaceComplexity";
   document.getElementById("bestSpaceComplexityCode").innerText =
     data.compareOtherSpaceComplexDegreeCode;
   document.getElementById("bestSpaceComplexityWords").innerText =
