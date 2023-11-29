@@ -1,5 +1,5 @@
 LOAD DATA LOCAL INFILE
-'./src/main/resources/PP_Baekjoon_Problem_.csv'
+'/Users/user/Desktop/Recommend-master/backend/backjoon-recommend/src/main/resources/PP_Baekjoon_Problem_.csv'
 INTO TABLE problem
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'

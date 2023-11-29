@@ -71,6 +71,36 @@ public class ChatGPTService {
         return analysisResult;
     }
 
+    public String getAnalysisWrong(String problemContents, String code) {
+        String gptRequestURI = "https://api.openai.com/v1/chat/completions";
+        String extraQuestion = "\n\n I solved this problem like " + code + " , Please give me some hints to help me solve it in korean.";
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders header = new HttpHeaders();
+        header.add("Authorization", "Bearer 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");
+        header.setContentType(MediaType.APPLICATION_JSON);
+
+        GPTRequest gptRequest = new GPTRequest();
+        Message message = new Message();
+        message.setContent(problemContents + extraQuestion);
+        System.out.println(problemContents + extraQuestion);
+        message.setRole("user");
+        gptRequest.setModel("gpt-3.5-turbo");
+        gptRequest.setStream(false);
+        gptRequest.setMessages(new ArrayList<>());
+        gptRequest.getMessages().add(message);
+
+        HttpEntity<GPTRequest> httpEntity = new HttpEntity<>(gptRequest, header);
+
+        ResponseEntity<GPTResponse> exchange = restTemplate.exchange(gptRequestURI, POST, httpEntity,
+                GPTResponse.class);
+
+        String analysisResult = exchange.getBody().getChoices().get(0).getMessage().getContent();
+
+        return analysisResult;
+    }
+
     @Data
     static class GPTRequest {
         private String model;
