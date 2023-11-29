@@ -217,14 +217,14 @@ button:hover {
 }
 
 #bestSpaceComplexityTitle {
-  font-family: "Black Han Sans";
   font-weight: 400;
   font-size: 22px;
   border-bottom: 2px solid var(--border-color);
 }
-#bestTimeComplexityTitle {
-  font-family: "Black Han Sans";
-  font-weight: 400;
+#bestTimeComplexityTitle,
+#bestSpaceComplexityTitle {
+  font-weight: bold;
+
   font-size: 25px;
   border-bottom: 2px solid var(--border-color);
 }
