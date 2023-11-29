@@ -158,6 +158,41 @@ function handleScriptResults2(results) {
 }
 
 function showResponse(data) {
+  // 버튼 생성
+  /*  margin-left: 30px;
+  border: 1px solid var(--border-color);
+  padding: 8px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;*/
+  const showMoreButton1 = document.getElementById("showMoreButton1");
+  const codeSections1 = document.querySelectorAll(".code-section1");
+  showMoreButton1.innerText = "see more";
+  showMoreButton1.style.marginLeft = "30px";
+  showMoreButton1.style.fontSize = "10px";
+  showMoreButton1.style.border = "1px solid var(--border-color)";
+  showMoreButton1.style.padding = "8px";
+  showMoreButton1.style.borderRadius = "15px";
+  showMoreButton1.style.boxShadow = "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
+  showMoreButton1.style.cursor = "pointer";
+
+  showMoreButton1.addEventListener("click", function () {
+    codeSections1.forEach((section) => section.classList.toggle("show-more"));
+  });
+  // 버튼 생성
+  const showMoreButton2 = document.getElementById("showMoreButton2");
+  const codeSections2 = document.querySelectorAll(".code-section2");
+  showMoreButton2.innerText = "see more";
+  showMoreButton2.style.marginLeft = "30px";
+  showMoreButton2.style.fontSize = "10px";
+  showMoreButton2.style.border = "1px solid var(--border-color)";
+  showMoreButton2.style.padding = "8px";
+  showMoreButton2.style.borderRadius = "15px";
+  showMoreButton2.style.boxShadow = "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
+  showMoreButton2.style.cursor = "pointer";
+  showMoreButton2.addEventListener("click", function () {
+    codeSections2.forEach((section) => section.classList.toggle("show-more"));
+  });
   const createLabelDiv = (text) => {
     const labelDiv = document.createElement("div");
     labelDiv.innerText = text;
@@ -201,15 +236,16 @@ function showResponse(data) {
   // Apply styles to the div elements (timeComplexity, spaceComplexity, algorithm)
   [timeComplexityDiv, spaceComplexityDiv, algorithmDiv, hintDiv].forEach(
     (div) => {
-      div.style.width = "40px"; // Set a fixed width
-      div.style.height = "40px"; // Set a fixed height
+      div.style.width = "50px"; // Set a fixed width
+      div.style.height = "50px"; // Set a fixed height
       div.style.border = "1px solid #ccc";
       div.style.display = "flex";
+
       div.style.justifyContent = "center";
       div.style.alignItems = "center";
       div.style.padding = "10px";
       div.style.fontSize = "10px";
-      div.style.borderRadius = "5px";
+      div.style.borderRadius = "15px";
       div.style.textAlign = "center";
       div.style.marginBottom = "15px";
       div.style.boxShadow = "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";

@@ -188,17 +188,87 @@ button:hover {
   background-position: 99% 50%;
 }
 
+#analyze-flex {
+  font-size: 15px;
+}
 .styled-text {
   color: var(--font-color);
 
   font-weight: 0;
-  border-radius: 0;
+
   border-radius: 15px;
-  padding: 50px;
+  padding: 15px 30px 15px 30px;
+  font-weight: 400;
+  font-family: "Black Han Sams";
   line-height: 1.4; /* 텍스트 크기의 1.5배로 간격 설정 */
   border: none;
   border: 1px solid var(--border-color);
   margin-bottom: 10px;
   font-size: 15px; /* 원하는 크기로 설정 */
   transition: all 1.2s ease-out;
+}
+
+#bestTimeComplexity {
+  display: flex;
+  flex-direction: column;
+}
+
+#bestSpaceComplexityTitle {
+  font-family: "Black Han Sans";
+  font-weight: 400;
+  font-size: 22px;
+  border-bottom: 2px solid var(--border-color);
+}
+#bestTimeComplexityTitle {
+  font-family: "Black Han Sans";
+  font-weight: 400;
+  font-size: 25px;
+  border-bottom: 2px solid var(--border-color);
+}
+#code-word {
+  display: flex;
+}
+
+#dataDisplay {
+  margin: 10px 120px 0 120px;
+}
+
+#bestTimeComplexityCode,
+#bestSpaceComplexityCode {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+#bestTimeComplexityWords,
+#bestSpaceComplexityWords {
+  margin-left: 10px;
+  border-left: 1px solid var(--border-color);
+  padding-left: 10px;
+  font-size: 12px;
+  display: flex;
+  font-weight: 400;
+}
+
+.code-section {
+  max-height: 150px; /* 원하는 높이 */
+  overflow: hidden;
+  transition: max-height 0.5s ease; /* 애니메이션을 위한 transition 추가 */
+}
+
+.show-more {
+  max-height: none; /* 버튼을 눌렀을 때 전체 코드를 보여주는 클래스 */
+}
+
+#title-flex {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#showMoreButton1:hover {
+  transition: all 0.7s ease-out;
+}
+#showMoreButton2 :hover {
+  transition: all 0.7s ease-out;
 }

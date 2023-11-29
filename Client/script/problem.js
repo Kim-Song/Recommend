@@ -59,8 +59,9 @@ function createRow(item) {
   tierImg.alt = `Tier ${tierNumber}`;
   tierImg.style.width = "20px";
   tierImg.style.height = "20px";
-  nameTierContainer.appendChild(nameTierSpan);
   nameTierContainer.appendChild(tierImg);
+
+  nameTierContainer.appendChild(nameTierSpan);
 
   row.appendChild(nameTierContainer);
 
