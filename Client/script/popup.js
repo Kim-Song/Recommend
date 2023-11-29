@@ -158,17 +158,10 @@ function handleScriptResults2(results) {
 }
 
 function showResponse(data) {
-  // 버튼 생성
-  /*  margin-left: 30px;
-  border: 1px solid var(--border-color);
-  padding: 8px;
-  border-radius: 15px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  cursor: pointer;*/
   const showMoreButton1 = document.getElementById("showMoreButton1");
   const codeSections1 = document.querySelectorAll(".code-section1");
   showMoreButton1.innerText = "see more";
-  showMoreButton1.style.marginLeft = "30px";
+  showMoreButton1.style.marginLeft = "20px";
   showMoreButton1.style.fontSize = "10px";
   showMoreButton1.style.border = "1px solid var(--border-color)";
   showMoreButton1.style.padding = "8px";

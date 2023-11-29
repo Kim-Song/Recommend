@@ -34,8 +34,11 @@ body {
   display: flex;
   justify-content: space-around;
 }
-
+#analyzeButton {
+  cursor: pointer;
+}
 #analyze-flex {
+  font-family: "Black Han Sans";
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -263,12 +266,15 @@ button:hover {
 #title-flex {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
 }
 
 #showMoreButton1:hover {
+  scale: 1.2;
   transition: all 0.7s ease-out;
 }
 #showMoreButton2 :hover {
+  scale: 1.2;
   transition: all 0.7s ease-out;
 }
