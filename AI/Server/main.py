@@ -30,3 +30,16 @@ def get_list(user_name):
     if(flag):
         recommend_list, user_weak_algorithm = get_recommend_list(user_name)
         return {"recommend_list": recommend_list, "user_weak_algorithm": user_weak_algorithm}
+    
+@app.get("/get_problem_information/{problem_number}")
+def get_problem_information(problem_number):
+    
+    problem_data_path = '../Dataset/Baekjoon_문제_context_크롤링.csv'
+    
+    problem_df = pd.read_csv(problem_data_path)
+
+    return {
+        "problem_context": problem_df.loc[problem_df['problem_number']==int(problem_number), 'problem_description'].values[0],
+        "problem_input": problem_df.loc[problem_df['problem_number']==int(problem_number), 'problem_input'].values[0],
+        "problem_output": problem_df.loc[problem_df['problem_number']==int(problem_number), 'problem_output'].values[0]
+    }
