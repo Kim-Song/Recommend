@@ -5,6 +5,7 @@ import static org.springframework.http.HttpMethod.POST;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -16,6 +17,9 @@ import sejong.capstone.backjoonrecommend.domain.Code;
 
 @Service
 public class ChatGPTService {
+
+    @Value("${openai-admin-key}")
+    private String openai_admin_key;
     public String getAnalysis(String code, Analysis analysis, Code bestCode) {
         String gptRequestURI = "https://api.openai.com/v1/chat/completions";
         String extraQuestion = "";
@@ -48,7 +52,7 @@ public class ChatGPTService {
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders header = new HttpHeaders();
-        header.add("Authorization", "Bearer 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");
+        header.add("Authorization", "Bearer " + openai_admin_key);
         header.setContentType(MediaType.APPLICATION_JSON);
 
         GPTRequest gptRequest = new GPTRequest();
