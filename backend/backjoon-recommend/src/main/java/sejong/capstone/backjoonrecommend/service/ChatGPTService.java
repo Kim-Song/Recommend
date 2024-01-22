@@ -4,12 +4,15 @@ import static org.springframework.http.HttpMethod.POST;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import sejong.capstone.backjoonrecommend.domain.Analysis;
@@ -20,7 +23,9 @@ public class ChatGPTService {
 
     @Value("${openai-admin-key}")
     private String openai_admin_key;
-    public String getAnalysis(String code, Analysis analysis, Code bestCode) {
+
+    @Async("threadPoolTaskExecutor")
+    public CompletableFuture<String> getAnalysis(String code, Analysis analysis, Code bestCode) {
         String gptRequestURI = "https://api.openai.com/v1/chat/completions";
         String extraQuestion = "";
         if (analysis == Analysis.BIG_O_AND_SPACE_COMPLEX_AND_WHAT_ALGO) {
@@ -31,13 +36,13 @@ public class ChatGPTService {
 
         if (analysis == Analysis.COMPARE_BIG_O) {
             if (bestCode == null) {
-                return "기능 준비 중 입니다.";
+                return CompletableFuture.completedFuture("기능 준비 중 입니다.");
             }
             extraQuestion = " Simply compare and analyze the time complexity of preceding code and following code in less than 30 characters. Please explain it in terms of items rather than lines in Korean. ";
         }
         if (analysis == Analysis.COMPARE_SPACE_COMPLEX) {
             if (bestCode == null) {
-                return "기능 준비 중 입니다.";
+                return CompletableFuture.completedFuture("기능 준비 중 입니다.");
             }
             extraQuestion = " Simply compare and analyze the space complexity of preceding code and following code in 30 characters or less and explain it in terms of items rather than lines in Korean. ";
         }
@@ -45,7 +50,7 @@ public class ChatGPTService {
         if (analysis == Analysis.COMPARE_BIG_O || analysis == Analysis.COMPARE_SPACE_COMPLEX) {
             extraQuestion += bestCode.getCode();
             if (code.equals(bestCode.getCode())) {
-                return "같은 코드 입니다. 당신의 코드가 지금까지 최선의 코드입니다.";
+                return CompletableFuture.completedFuture("같은 코드 입니다. 당신의 코드가 지금까지 최선의 코드입니다.");
             }
         }
 
@@ -58,7 +63,6 @@ public class ChatGPTService {
         GPTRequest gptRequest = new GPTRequest();
         Message message = new Message();
         message.setContent(code + extraQuestion);
-        System.out.println(code + extraQuestion);
         message.setRole("user");
         gptRequest.setModel("gpt-3.5-turbo");
         gptRequest.setStream(false);
@@ -72,7 +76,7 @@ public class ChatGPTService {
 
         String analysisResult = exchange.getBody().getChoices().get(0).getMessage().getContent();
 
-        return analysisResult;
+        return CompletableFuture.completedFuture(analysisResult);
     }
     public String getAnalysisWrong(String problemContents, String code) {
         String gptRequestURI = "https://api.openai.com/v1/chat/completions";
@@ -87,7 +91,6 @@ public class ChatGPTService {
         GPTRequest gptRequest = new GPTRequest();
         Message message = new Message();
         message.setContent(problemContents + extraQuestion);
-        System.out.println(problemContents + extraQuestion);
         message.setRole("user");
         gptRequest.setModel("gpt-3.5-turbo");
         gptRequest.setStream(false);

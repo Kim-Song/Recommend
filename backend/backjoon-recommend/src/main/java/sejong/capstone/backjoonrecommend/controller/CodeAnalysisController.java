@@ -1,5 +1,6 @@
 package sejong.capstone.backjoonrecommend.controller;
 
+import java.util.concurrent.CompletableFuture;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,23 +45,35 @@ public class CodeAnalysisController {
         inputCode.setCode(code);
 
         codeRepository.save(inputCode);
+        Code bestCode1 = codeRepository.getBestCodeBySpaceComplexity(number, language);
+        Code bestCode2 = codeRepository.getBestCodeBySpaceComplexity(number, language);
 
-        String totalAnalysis = chatGPTService.getAnalysis(code, Analysis.BIG_O_AND_SPACE_COMPLEX_AND_WHAT_ALGO, null);
+        CompletableFuture<String> asyncTotalAnalysis = chatGPTService.getAnalysis(code, Analysis.BIG_O_AND_SPACE_COMPLEX_AND_WHAT_ALGO, null);
+        CompletableFuture<String> asyncCompareBigO = chatGPTService.getAnalysis(code, Analysis.COMPARE_BIG_O, bestCode1);
+        CompletableFuture<String> asyncCompareSpaceComplex = chatGPTService.getAnalysis(code, Analysis.COMPARE_SPACE_COMPLEX, bestCode2);
+
+        String totalAnalysis = "";
+        String compareBigO = "";
+        String compareSpaceComplex = "";
+
+        try {
+            totalAnalysis = asyncTotalAnalysis.get();
+            compareBigO = asyncCompareBigO.get();
+            compareSpaceComplex = asyncCompareSpaceComplex.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            totalAnalysis = "오류,오류,오류";
+            compareBigO = "오류";
+            compareSpaceComplex = "오류";
+        }
+
         System.out.println(totalAnalysis);
+        System.out.println(compareBigO);
+        System.out.println(compareSpaceComplex);
         String[] split = totalAnalysis.split(",");
         String bigO = split[0];
         String spaceComplex = split[1];
         String whatAlgo = split[2];
-        System.out.println("3");
-
-        Code bestCode1 = codeRepository.getBestCodeBySpaceComplexity(number, language);
-        String compareBigO = chatGPTService.getAnalysis(code, Analysis.COMPARE_BIG_O, bestCode1);
-        System.out.println("4");
-
-        Code bestCode2 = codeRepository.getBestCodeBySpaceComplexity(number, language);
-        String compareSpaceComplex = chatGPTService.getAnalysis(code, Analysis.COMPARE_SPACE_COMPLEX,
-                bestCode2);
-        System.out.println("5");
 
         AnalysisClientDto analysisClientDto = new AnalysisClientDto();
         AnalysisResult analysisResult = new AnalysisResult();

@@ -1,4 +1,4 @@
-package sejong.capstone.backjoonrecommend;
+package sejong.capstone.backjoonrecommend.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
