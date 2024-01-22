@@ -1,6 +1,5 @@
 package sejong.capstone.backjoonrecommend.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +7,6 @@ import sejong.capstone.backjoonrecommend.domain.Analysis;
 import sejong.capstone.backjoonrecommend.domain.AnalysisResult;
 import sejong.capstone.backjoonrecommend.domain.AnalysisResult2;
 import sejong.capstone.backjoonrecommend.domain.Code;
-import sejong.capstone.backjoonrecommend.dto.ai.AiDTO;
 import sejong.capstone.backjoonrecommend.dto.ai.AiProblemDTO;
 import sejong.capstone.backjoonrecommend.dto.client.AnalysisClientDto;
 import sejong.capstone.backjoonrecommend.dto.client.AnalysisClientProblemNumberDto;
@@ -18,7 +16,6 @@ import sejong.capstone.backjoonrecommend.repository.CodeRepository;
 import sejong.capstone.backjoonrecommend.service.AiService;
 import sejong.capstone.backjoonrecommend.service.ChatGPTService;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class CodeAnalysisController {
     private final ChatGPTService chatGPTService;
@@ -77,17 +74,6 @@ public class CodeAnalysisController {
         analysisResult.setCompareOtherSpaceComplexDegreeCode(bestCode2.getCode());
         analysisResult.setCompareOtherSpaceComplexDegree(compareSpaceComplex);
 
-        /*
-        이건 돈아끼려고 하는거
-        analysisResult.setBigO("O(N^3)");
-        analysisResult.setSpaceComplexDegree("O(N^2)");
-        analysisResult.setWhatAlgo("그리디");
-        analysisResult.setCompareOtherBigOCode("123");
-        analysisResult.setCompareOtherBigO("이 사람의 코드를 살펴보시면 ~~~하기 떄문에 이런점에서 ~~합니다.");
-        analysisResult.setCompareOtherSpaceComplexDegreeCode("123");
-        analysisResult.setCompareOtherSpaceComplexDegree("이 사람의 코드를 살펴보시면 ~~~하기 떄문에 이런점에서 ~~합니다.");
-        */
-
         analysisClientDto.setData(analysisResult);
         return analysisClientDto;
     }
@@ -99,7 +85,7 @@ public class CodeAnalysisController {
 
         AnalysisWrongCodeClientDto analysisWrongCodeClientDto = new AnalysisWrongCodeClientDto();
         // api를 호출해서 문제를 가져온다.
-        AiProblemDTO analysisByWrong = aiService.getAnalysisByWrong(number);
+        AiProblemDTO analysisByWrong = aiService.getProblemInfo(number);
         String contents = analysisByWrong.getProblem_context();
         contents += " 입력 : " + analysisByWrong.getProblem_input();
         contents += " 출력 : " + analysisByWrong.getProblem_output();

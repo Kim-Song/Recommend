@@ -35,6 +35,4 @@ out/
 
 ### VS Code ###
 .vscode/
-PP_Baekjoon_Problem_.csv
-application.properties
-application-API-KEY.properties
+resources/

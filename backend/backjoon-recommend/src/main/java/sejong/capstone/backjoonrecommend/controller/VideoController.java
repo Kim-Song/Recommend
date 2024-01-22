@@ -2,7 +2,6 @@ package sejong.capstone.backjoonrecommend.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +12,6 @@ import sejong.capstone.backjoonrecommend.dto.client.VideoLinkClientDto;
 import sejong.capstone.backjoonrecommend.repository.VideoRepository;
 import sejong.capstone.backjoonrecommend.service.AiService;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class VideoController {
 
@@ -28,7 +26,7 @@ public class VideoController {
     @GetMapping("/video")
     private VideoLinkClientDto getVideo(@RequestParam String id) {
         // id를 가지고 취약 알고리즘을 알아낸다.
-        AiDTO analysis = aiService.getAnalysis(id);
+        AiDTO analysis = aiService.getProblemList(id);
         List<String> userWeakAlgorithms = analysis.getUser_weak_algorithm();
 
         ArrayList<VideoLink> videoLinks = new ArrayList<>();

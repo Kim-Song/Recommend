@@ -74,7 +74,6 @@ public class ChatGPTService {
 
         return analysisResult;
     }
-
     public String getAnalysisWrong(String problemContents, String code) {
         String gptRequestURI = "https://api.openai.com/v1/chat/completions";
         String extraQuestion = "\n\n I solved this problem like " + code + " , Please give me some hints to help me solve it in korean.";
@@ -82,7 +81,7 @@ public class ChatGPTService {
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders header = new HttpHeaders();
-        header.add("Authorization", "Bearer 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");
+        header.add("Authorization", "Bearer " + openai_admin_key);
         header.setContentType(MediaType.APPLICATION_JSON);
 
         GPTRequest gptRequest = new GPTRequest();

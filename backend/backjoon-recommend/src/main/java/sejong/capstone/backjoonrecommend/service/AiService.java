@@ -1,5 +1,6 @@
 package sejong.capstone.backjoonrecommend.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -8,14 +9,16 @@ import sejong.capstone.backjoonrecommend.dto.ai.AiProblemDTO;
 
 @Service
 public class AiService {
-    static final String ipAddress = "172.16.1.68";
-    static final String URL_FORMAT = "http://" + ipAddress + ":8000/get_list/";
-    static final String URL_FORMAT2 = "http://" + ipAddress + ":8000/get_problem_information/";
+
+    @Value("${ai-recommend-problem-address}")
+    private String problem_reco_addr;
+    @Value("${ai-problem-information-address}")
+    private String problem_info_addr;
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    public AiDTO getAnalysis(String id) {
-        String URL = URL_FORMAT + id;
+    public AiDTO getProblemList(String id) {
+        String URL = problem_reco_addr + id;
 
         ResponseEntity<AiDTO> forEntity = restTemplate.getForEntity(URL, AiDTO.class);
         AiDTO body = forEntity.getBody();
@@ -24,8 +27,8 @@ public class AiService {
         return body;
     }
 
-    public AiProblemDTO getAnalysisByWrong(Long id) {
-        String URL = URL_FORMAT2 + id;
+    public AiProblemDTO getProblemInfo(Long id) {
+        String URL = problem_info_addr + id;
 
         ResponseEntity<AiProblemDTO> forEntity = restTemplate.getForEntity(URL, AiProblemDTO.class);
         AiProblemDTO body = forEntity.getBody();
