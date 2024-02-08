@@ -48,32 +48,31 @@ public class CodeAnalysisController {
         Code bestCode1 = codeRepository.getBestCodeBySpaceComplexity(number, language);
         Code bestCode2 = codeRepository.getBestCodeBySpaceComplexity(number, language);
 
-        CompletableFuture<String> asyncTotalAnalysis = chatGPTService.getAnalysis(code, Analysis.BIG_O_AND_SPACE_COMPLEX_AND_WHAT_ALGO, null);
+        CompletableFuture<String> asyncBigO = chatGPTService.getAnalysis(code, Analysis.BIG_O, null);
+        CompletableFuture<String> asyncSpaceComplex = chatGPTService.getAnalysis(code, Analysis.SPACE_COMPLEX, null);
+        CompletableFuture<String> asyncWhatAlgo = chatGPTService.getAnalysis(code, Analysis.WHAT_ALGO, null);
         CompletableFuture<String> asyncCompareBigO = chatGPTService.getAnalysis(code, Analysis.COMPARE_BIG_O, bestCode1);
         CompletableFuture<String> asyncCompareSpaceComplex = chatGPTService.getAnalysis(code, Analysis.COMPARE_SPACE_COMPLEX, bestCode2);
 
-        String totalAnalysis = "";
+        String bigO = "";
+        String spaceComplex = "";
+        String whatAlgo = "";
         String compareBigO = "";
         String compareSpaceComplex = "";
 
         try {
-            totalAnalysis = asyncTotalAnalysis.get();
+            bigO = asyncBigO.get();
+            spaceComplex = asyncSpaceComplex.get();
+            whatAlgo = asyncWhatAlgo.get();
             compareBigO = asyncCompareBigO.get();
             compareSpaceComplex = asyncCompareSpaceComplex.get();
         } catch (Exception e) {
-            e.printStackTrace();
-            totalAnalysis = "오류,오류,오류";
-            compareBigO = "오류";
-            compareSpaceComplex = "오류";
+            bigO = "내일";
+            spaceComplex = "이용이";
+            whatAlgo = "가능합니다";
+            compareBigO = "내일 이용이 가능합니다.";
+            compareSpaceComplex = "내일 이용이 가능합니다";
         }
-
-        System.out.println(totalAnalysis);
-        System.out.println(compareBigO);
-        System.out.println(compareSpaceComplex);
-        String[] split = totalAnalysis.split(",");
-        String bigO = split[0];
-        String spaceComplex = split[1];
-        String whatAlgo = split[2];
 
         AnalysisClientDto analysisClientDto = new AnalysisClientDto();
         AnalysisResult analysisResult = new AnalysisResult();

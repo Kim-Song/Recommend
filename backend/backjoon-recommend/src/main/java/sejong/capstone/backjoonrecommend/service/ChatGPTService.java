@@ -28,10 +28,21 @@ public class ChatGPTService {
     public CompletableFuture<String> getAnalysis(String code, Analysis analysis, Code bestCode) {
         String gptRequestURI = "https://api.openai.com/v1/chat/completions";
         String extraQuestion = "";
-        if (analysis == Analysis.BIG_O_AND_SPACE_COMPLEX_AND_WHAT_ALGO) {
+        if (analysis == Analysis.BIG_O) {
+            extraQuestion = "Please tell me the Big O notation for this code. Example -> O(N^3)\n"
+                    + "As an example, just tell me ‘Big O’ without further explanation. Never allow the total length of your answer to exceed 10 characters.";
+        }
+
+        if (analysis == Analysis.SPACE_COMPLEX) {
+            extraQuestion = "Please tell me the space complex for this code. Example -> O(N^3)\n"
+                    + "As an example, just tell me ‘space complex’ without further explanation. Never allow the total length of your answer to exceed 10 characters.";
+        }
+
+        if (analysis == Analysis.WHAT_ALGO) {
             extraQuestion =
-                    " Just the Big O notation, Space Complexity notation, what algorithm it is without explanation.  example -> O(N^3),O(N),Greedy. "
-                            + "Never give an answer longer than 8 characters for each 3 item and and separate them with commas like example";
+                    "Please tell me what algo it is for this code. Example -> Greedy\n"
+                            + "As an example, just tell me ‘what algo is’ without further explanation. "
+                            + "Never allow the total length of your answer to exceed 10 characters.";
         }
 
         if (analysis == Analysis.COMPARE_BIG_O) {
