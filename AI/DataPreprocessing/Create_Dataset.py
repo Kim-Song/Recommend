@@ -15,7 +15,8 @@ print('-----loading data...-----')
 user_baekjoon_df = pd.read_csv(os.path.join(data_path, 'Baekjoon_유저_크롤링.csv'))
 problem_baekjoon_df = pd.read_csv(os.path.join(data_path, 'Baekjoon_문제_크롤링.csv'))
 user_solvedac_df = pd.read_csv(os.path.join(data_path, 'solved.ac_유저_크롤링.csv'))
-#user_id, code_language에 Nan값 제거, code_length는 의미 없는 feature -> 제거
+
+# 유저 아이디 목록이 존재하지 않는 것 존재 -> 데이터 오류, 삭제
 user_baekjoon_df = user_baekjoon_df[user_baekjoon_df['user_id_list'] == user_baekjoon_df['user_id_list']]
 
 # Problem number 형 변환
