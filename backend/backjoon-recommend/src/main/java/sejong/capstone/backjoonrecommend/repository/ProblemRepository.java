@@ -8,7 +8,7 @@ import sejong.capstone.backjoonrecommend.domain.entity.Problem;
 
 @Repository
 @Transactional
-public class ProblemRecommendRepository {
+public class ProblemRepository {
 
     @PersistenceContext
     private EntityManager em;

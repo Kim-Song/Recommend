@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.RestController;
 import sejong.capstone.backjoonrecommend.domain.entity.Problem;
 import sejong.capstone.backjoonrecommend.dto.ai.receipt.AiDTO;
 import sejong.capstone.backjoonrecommend.dto.client.send.ProblemDto;
-import sejong.capstone.backjoonrecommend.repository.ProblemRecommendRepository;
+import sejong.capstone.backjoonrecommend.repository.ProblemRepository;
 import sejong.capstone.backjoonrecommend.service.AiService;
 
 @RestController
 @RequiredArgsConstructor
-public class ProblemRecommendController {
+public class ProblemController {
 
-    private final ProblemRecommendRepository problemRecommendRepository;
+    private final ProblemRepository problemRepository;
     private final AiService aiService;
 
     @GetMapping("/problem")
-    private ProblemDto getProblems(@RequestParam String id) {
+    private ProblemDto getRecommendProblems(@RequestParam String id) {
         // id를 이용해서 problemNumbers를 가져온다. 즉 추천 문제들을 가져온다.
-        AiDTO analysis = aiService.getProblemList(id);
+        AiDTO analysis = aiService.getProblems(id);
         List<Long> recommendList = analysis.getRecommend_list();
 
         List<Problem> list = new ArrayList<>();
         for (Long number : recommendList) {
-            Problem info = problemRecommendRepository.findByProblemNumber(number);
+            Problem info = problemRepository.findByProblemNumber(number);
             list.add(info);
         }
         

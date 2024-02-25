@@ -11,7 +11,7 @@ public class Problem {
     private Long number;
 
     private String name;
-    private Long tier;
+    private String tier;
     private String algorithm;
     private Double time_condition;
     private Long memory_condition;
@@ -19,5 +19,7 @@ public class Problem {
     private Long answer_submission_count;
     private Long answered_people_count;
     private Double correct_rate;
-    private Double avg_try;
+    private String description;
+    private String input;
+    private String output;
 }

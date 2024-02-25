@@ -23,27 +23,24 @@ public class VideoController {
     @GetMapping("/video")
     private VideoLinkDto getVideo(@RequestParam String id) {
         // id를 가지고 취약 알고리즘을 알아낸다.
-        AiDTO analysis = aiService.getProblemList(id);
+        AiDTO analysis = aiService.getProblems(id);
         List<String> userWeakAlgorithms = analysis.getUser_weak_algorithm();
 
         ArrayList<VideoLink> videoLinks = new ArrayList<>();
 
         for (String algo : userWeakAlgorithms) {
             List<Video> videos = videoRepository.findByAlgorithm(algo);
-            System.out.println(videos);
 
-            for (Video ele : videos) {
+            for (Video video : videos) {
                 VideoLink videoLink = new VideoLink();
-                String algorithm = ele.getAlgorithm();
-                String url = ele.getUrl();
+                String algorithm = video.getAlgorithm();
+                String url = video.getUrl();
                 videoLink.setWeakAlgorithm(algorithm);
                 videoLink.setLink(url);
-                System.out.println(videoLink);
                 videoLinks.add(videoLink);
             }
         }
 
-        System.out.println(videoLinks);
         VideoLinkDto videoLinkDto = new VideoLinkDto();
         videoLinkDto.setData(videoLinks);
         return videoLinkDto;

@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import sejong.capstone.backjoonrecommend.domain.CodeAnalysis;
+import sejong.capstone.backjoonrecommend.domain.entity.Problem;
 import sejong.capstone.backjoonrecommend.dto.CorrectCodeAnalysisResult;
 import sejong.capstone.backjoonrecommend.dto.WrongCodeAnalysis;
 import sejong.capstone.backjoonrecommend.domain.entity.Code;
-import sejong.capstone.backjoonrecommend.dto.ai.receipt.AiProblemDTO;
 import sejong.capstone.backjoonrecommend.dto.client.send.AnalysisDto;
 import sejong.capstone.backjoonrecommend.dto.client.receipt.CorrectCodeAnalysisDto;
 import sejong.capstone.backjoonrecommend.dto.client.send.WrongCodeAnalysisDto;
 import sejong.capstone.backjoonrecommend.repository.CodeRepository;
-import sejong.capstone.backjoonrecommend.service.AiService;
+import sejong.capstone.backjoonrecommend.repository.ProblemRepository;
 import sejong.capstone.backjoonrecommend.service.ChatGPTService;
 
 @RestController
@@ -22,10 +22,10 @@ import sejong.capstone.backjoonrecommend.service.ChatGPTService;
 public class CodeAnalysisController {
     private final ChatGPTService chatGPTService;
     private final CodeRepository codeRepository;
-    private final AiService aiService;
+    private final ProblemRepository problemRepository;
 
     @PostMapping("/analysis")
-    private AnalysisDto getAnalysis(@RequestBody CorrectCodeAnalysisDto codeDto) {
+    private AnalysisDto getCorrectCodeAnalysis(@RequestBody CorrectCodeAnalysisDto codeDto) {
         Long number = codeDto.getNumber();
         Long time = codeDto.getTime();
         Long memory = codeDto.getMemory();
@@ -86,19 +86,20 @@ public class CodeAnalysisController {
     }
 
     @PostMapping("/analysis2")
-    private WrongCodeAnalysisDto getAnalysis2(@RequestBody sejong.capstone.backjoonrecommend.dto.client.receipt.WrongCodeAnalysisDto clientDto) {
+    private WrongCodeAnalysisDto getWrongCodeAnalysis(@RequestBody sejong.capstone.backjoonrecommend.dto.client.receipt.WrongCodeAnalysisDto clientDto) {
         Long number = clientDto.getNumber();
         String userCode = clientDto.getCode();
 
-        WrongCodeAnalysisDto wrongCodeAnalysisDto = new WrongCodeAnalysisDto();
-        // api를 호출해서 문제를 가져온다.
-        AiProblemDTO analysisByWrong = aiService.getProblemInfo(number);
-        String contents = analysisByWrong.getProblem_context();
-        contents += " 입력 : " + analysisByWrong.getProblem_input();
-        contents += " 출력 : " + analysisByWrong.getProblem_output();
-        // api를 호출해서 문제를 가져온다.
+        // 문제를 가져온다.
+        Problem problem = problemRepository.findByProblemNumber(number);
+        String contents = problem.getDescription();
+        contents += " 입력 : " + problem.getInput();
+        contents += " 출력 : " + problem.getOutput();
+        // 문제를 가져온다.
 
         String analysisWrong = chatGPTService.getAnalysisWrong(contents, userCode);
+
+        WrongCodeAnalysisDto wrongCodeAnalysisDto = new WrongCodeAnalysisDto();
         WrongCodeAnalysis wrongCodeAnalysis = new WrongCodeAnalysis();
         wrongCodeAnalysis.setContents(analysisWrong);
         wrongCodeAnalysisDto.setData(wrongCodeAnalysis);
