@@ -1,4 +1,4 @@
-package sejong.capstone.backjoonrecommend.dto.ai;
+package sejong.capstone.backjoonrecommend.dto.ai.receipt;
 
 import java.util.List;
 import lombok.Data;

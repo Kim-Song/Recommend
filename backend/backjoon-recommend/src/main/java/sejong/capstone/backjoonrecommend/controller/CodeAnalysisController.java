@@ -1,36 +1,31 @@
 package sejong.capstone.backjoonrecommend.controller;
 
 import java.util.concurrent.CompletableFuture;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import sejong.capstone.backjoonrecommend.domain.Analysis;
-import sejong.capstone.backjoonrecommend.domain.AnalysisResult;
-import sejong.capstone.backjoonrecommend.domain.AnalysisResult2;
-import sejong.capstone.backjoonrecommend.domain.Code;
-import sejong.capstone.backjoonrecommend.dto.ai.AiProblemDTO;
-import sejong.capstone.backjoonrecommend.dto.client.AnalysisClientDto;
-import sejong.capstone.backjoonrecommend.dto.client.AnalysisClientProblemNumberDto;
-import sejong.capstone.backjoonrecommend.dto.client.AnalysisCodeClientDto;
-import sejong.capstone.backjoonrecommend.dto.client.AnalysisWrongCodeClientDto;
+import sejong.capstone.backjoonrecommend.domain.CodeAnalysis;
+import sejong.capstone.backjoonrecommend.dto.CorrectCodeAnalysisResult;
+import sejong.capstone.backjoonrecommend.dto.WrongCodeAnalysis;
+import sejong.capstone.backjoonrecommend.domain.entity.Code;
+import sejong.capstone.backjoonrecommend.dto.ai.receipt.AiProblemDTO;
+import sejong.capstone.backjoonrecommend.dto.client.send.AnalysisDto;
+import sejong.capstone.backjoonrecommend.dto.client.receipt.CorrectCodeAnalysisDto;
+import sejong.capstone.backjoonrecommend.dto.client.send.WrongCodeAnalysisDto;
 import sejong.capstone.backjoonrecommend.repository.CodeRepository;
 import sejong.capstone.backjoonrecommend.service.AiService;
 import sejong.capstone.backjoonrecommend.service.ChatGPTService;
 
 @RestController
+@RequiredArgsConstructor
 public class CodeAnalysisController {
     private final ChatGPTService chatGPTService;
     private final CodeRepository codeRepository;
     private final AiService aiService;
 
-    public CodeAnalysisController(ChatGPTService chatGPTService, CodeRepository codeRepository, AiService aiService) {
-        this.chatGPTService = chatGPTService;
-        this.codeRepository = codeRepository;
-        this.aiService = aiService;
-    }
-
     @PostMapping("/analysis")
-    private AnalysisClientDto getAnalysis(@RequestBody AnalysisCodeClientDto codeDto) {
+    private AnalysisDto getAnalysis(@RequestBody CorrectCodeAnalysisDto codeDto) {
         Long number = codeDto.getNumber();
         Long time = codeDto.getTime();
         Long memory = codeDto.getMemory();
@@ -45,14 +40,14 @@ public class CodeAnalysisController {
         inputCode.setCode(code);
 
         codeRepository.save(inputCode);
-        Code bestCode1 = codeRepository.getBestCodeBySpaceComplexity(number, language);
+        Code bestCode1 = codeRepository.getBestCodeByBigO(number, language);
         Code bestCode2 = codeRepository.getBestCodeBySpaceComplexity(number, language);
 
-        CompletableFuture<String> asyncBigO = chatGPTService.getAnalysis(code, Analysis.BIG_O, null);
-        CompletableFuture<String> asyncSpaceComplex = chatGPTService.getAnalysis(code, Analysis.SPACE_COMPLEX, null);
-        CompletableFuture<String> asyncWhatAlgo = chatGPTService.getAnalysis(code, Analysis.WHAT_ALGO, null);
-        CompletableFuture<String> asyncCompareBigO = chatGPTService.getAnalysis(code, Analysis.COMPARE_BIG_O, bestCode1);
-        CompletableFuture<String> asyncCompareSpaceComplex = chatGPTService.getAnalysis(code, Analysis.COMPARE_SPACE_COMPLEX, bestCode2);
+        CompletableFuture<String> asyncBigO = chatGPTService.getAnalysis(code, CodeAnalysis.BIG_O, null);
+        CompletableFuture<String> asyncSpaceComplex = chatGPTService.getAnalysis(code, CodeAnalysis.SPACE_COMPLEX, null);
+        CompletableFuture<String> asyncWhatAlgo = chatGPTService.getAnalysis(code, CodeAnalysis.WHAT_ALGO, null);
+        CompletableFuture<String> asyncCompareBigO = chatGPTService.getAnalysis(code, CodeAnalysis.COMPARE_BIG_O, bestCode1);
+        CompletableFuture<String> asyncCompareSpaceComplex = chatGPTService.getAnalysis(code, CodeAnalysis.COMPARE_SPACE_COMPLEX, bestCode2);
 
         String bigO = "";
         String spaceComplex = "";
@@ -74,28 +69,28 @@ public class CodeAnalysisController {
             compareSpaceComplex = "내일 이용이 가능합니다";
         }
 
-        AnalysisClientDto analysisClientDto = new AnalysisClientDto();
-        AnalysisResult analysisResult = new AnalysisResult();
+        AnalysisDto analysisDto = new AnalysisDto();
+        CorrectCodeAnalysisResult correctCodeAnalysisResult = new CorrectCodeAnalysisResult();
 
-        analysisResult.setBigO(bigO);
-        analysisResult.setSpaceComplexDegree(spaceComplex);
-        analysisResult.setWhatAlgo(whatAlgo);
+        correctCodeAnalysisResult.setBigO(bigO);
+        correctCodeAnalysisResult.setSpaceComplexDegree(spaceComplex);
+        correctCodeAnalysisResult.setWhatAlgo(whatAlgo);
 
-        analysisResult.setCompareOtherBigOCode(bestCode1.getCode());
-        analysisResult.setCompareOtherBigO(compareBigO);
-        analysisResult.setCompareOtherSpaceComplexDegreeCode(bestCode2.getCode());
-        analysisResult.setCompareOtherSpaceComplexDegree(compareSpaceComplex);
+        correctCodeAnalysisResult.setCompareOtherBigOCode(bestCode1.getCode());
+        correctCodeAnalysisResult.setCompareOtherBigO(compareBigO);
+        correctCodeAnalysisResult.setCompareOtherSpaceComplexDegreeCode(bestCode2.getCode());
+        correctCodeAnalysisResult.setCompareOtherSpaceComplexDegree(compareSpaceComplex);
 
-        analysisClientDto.setData(analysisResult);
-        return analysisClientDto;
+        analysisDto.setData(correctCodeAnalysisResult);
+        return analysisDto;
     }
 
     @PostMapping("/analysis2")
-    private AnalysisWrongCodeClientDto getAnalysis2(@RequestBody AnalysisClientProblemNumberDto clientDto) {
+    private WrongCodeAnalysisDto getAnalysis2(@RequestBody sejong.capstone.backjoonrecommend.dto.client.receipt.WrongCodeAnalysisDto clientDto) {
         Long number = clientDto.getNumber();
         String userCode = clientDto.getCode();
 
-        AnalysisWrongCodeClientDto analysisWrongCodeClientDto = new AnalysisWrongCodeClientDto();
+        WrongCodeAnalysisDto wrongCodeAnalysisDto = new WrongCodeAnalysisDto();
         // api를 호출해서 문제를 가져온다.
         AiProblemDTO analysisByWrong = aiService.getProblemInfo(number);
         String contents = analysisByWrong.getProblem_context();
@@ -104,9 +99,9 @@ public class CodeAnalysisController {
         // api를 호출해서 문제를 가져온다.
 
         String analysisWrong = chatGPTService.getAnalysisWrong(contents, userCode);
-        AnalysisResult2 analysisResult2 = new AnalysisResult2();
-        analysisResult2.setContents(analysisWrong);
-        analysisWrongCodeClientDto.setData(analysisResult2);
-        return analysisWrongCodeClientDto;
+        WrongCodeAnalysis wrongCodeAnalysis = new WrongCodeAnalysis();
+        wrongCodeAnalysis.setContents(analysisWrong);
+        wrongCodeAnalysisDto.setData(wrongCodeAnalysis);
+        return wrongCodeAnalysisDto;
     }
 }

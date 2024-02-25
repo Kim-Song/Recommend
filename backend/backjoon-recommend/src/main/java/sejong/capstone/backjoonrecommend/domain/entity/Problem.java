@@ -1,4 +1,4 @@
-package sejong.capstone.backjoonrecommend.domain;
+package sejong.capstone.backjoonrecommend.domain.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

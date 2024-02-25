@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import sejong.capstone.backjoonrecommend.dto.ai.AiDTO;
-import sejong.capstone.backjoonrecommend.dto.ai.AiProblemDTO;
+import sejong.capstone.backjoonrecommend.dto.ai.receipt.AiDTO;
+import sejong.capstone.backjoonrecommend.dto.ai.receipt.AiProblemDTO;
 
 @Service
 public class AiService {
