@@ -11,18 +11,19 @@ import sejong.capstone.backjoonrecommend.dto.ai.receipt.AiDTO;
 import sejong.capstone.backjoonrecommend.dto.client.send.ProblemDto;
 import sejong.capstone.backjoonrecommend.repository.ProblemRepository;
 import sejong.capstone.backjoonrecommend.service.AiService;
+import sejong.capstone.backjoonrecommend.service.AiServiceImpl;
 
 @RestController
 @RequiredArgsConstructor
 public class ProblemController {
 
     private final ProblemRepository problemRepository;
-    private final AiService aiService;
+    private final AiService AiServiceImpl;
 
     @GetMapping("/problem")
     private ProblemDto getRecommendProblems(@RequestParam String id) {
         // id를 이용해서 problemNumbers를 가져온다. 즉 추천 문제들을 가져온다.
-        AiDTO analysis = aiService.getProblems(id);
+        AiDTO analysis = AiServiceImpl.getProblems(id);
         List<Long> recommendList = analysis.getRecommend_list();
 
         List<Problem> list = new ArrayList<>();

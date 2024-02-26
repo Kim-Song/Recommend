@@ -12,18 +12,19 @@ import sejong.capstone.backjoonrecommend.dto.ai.receipt.AiDTO;
 import sejong.capstone.backjoonrecommend.dto.client.send.VideoLinkDto;
 import sejong.capstone.backjoonrecommend.repository.VideoRepository;
 import sejong.capstone.backjoonrecommend.service.AiService;
+import sejong.capstone.backjoonrecommend.service.AiServiceImpl;
 
 @RestController
 @RequiredArgsConstructor
 public class VideoController {
 
     private final VideoRepository videoRepository;
-    private final AiService aiService;
+    private final AiService AiServiceImpl;
 
     @GetMapping("/video")
     private VideoLinkDto getVideo(@RequestParam String id) {
         // id를 가지고 취약 알고리즘을 알아낸다.
-        AiDTO analysis = aiService.getProblems(id);
+        AiDTO analysis = AiServiceImpl.getProblems(id);
         List<String> userWeakAlgorithms = analysis.getUser_weak_algorithm();
 
         ArrayList<VideoLink> videoLinks = new ArrayList<>();
