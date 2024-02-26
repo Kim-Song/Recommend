@@ -22,4 +22,6 @@ public class Problem {
     private String description;
     private String input;
     private String output;
+    private Long other_result_form_1;
+    private Long other_result_form_2;
 }

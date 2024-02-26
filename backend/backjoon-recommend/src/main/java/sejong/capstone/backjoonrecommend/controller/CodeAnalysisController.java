@@ -2,8 +2,11 @@ package sejong.capstone.backjoonrecommend.controller;
 
 import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import sejong.capstone.backjoonrecommend.domain.CodeAnalysis;
 import sejong.capstone.backjoonrecommend.domain.entity.Problem;
@@ -12,7 +15,9 @@ import sejong.capstone.backjoonrecommend.dto.WrongCodeAnalysis;
 import sejong.capstone.backjoonrecommend.domain.entity.Code;
 import sejong.capstone.backjoonrecommend.dto.client.send.AnalysisDto;
 import sejong.capstone.backjoonrecommend.dto.client.receipt.CorrectCodeAnalysisDto;
+import sejong.capstone.backjoonrecommend.dto.client.send.ExceptionDto;
 import sejong.capstone.backjoonrecommend.dto.client.send.WrongCodeAnalysisDto;
+import sejong.capstone.backjoonrecommend.exception.NoSuchProblemException;
 import sejong.capstone.backjoonrecommend.repository.CodeRepository;
 import sejong.capstone.backjoonrecommend.repository.ProblemRepository;
 import sejong.capstone.backjoonrecommend.service.ChatGPTService;
@@ -24,9 +29,20 @@ public class CodeAnalysisController {
     private final CodeRepository codeRepository;
     private final ProblemRepository problemRepository;
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NoSuchProblemException.class)
+    public ExceptionDto noSuchProblemExHandler(NoSuchProblemException e) {
+        return new ExceptionDto(400L, e.getMessage());
+    }
+
     @PostMapping("/analysis")
     private AnalysisDto getCorrectCodeAnalysis(@RequestBody CorrectCodeAnalysisDto codeDto) {
         Long number = codeDto.getNumber();
+
+        if(!problemRepository.validateProblemNumber(number)) {
+            throw new NoSuchProblemException("지원하지 않는 문제입니다.");
+        }
+
         Long time = codeDto.getTime();
         Long memory = codeDto.getMemory();
         String language = codeDto.getLanguage();
@@ -88,6 +104,10 @@ public class CodeAnalysisController {
     @PostMapping("/analysis2")
     private WrongCodeAnalysisDto getWrongCodeAnalysis(@RequestBody sejong.capstone.backjoonrecommend.dto.client.receipt.WrongCodeAnalysisDto clientDto) {
         Long number = clientDto.getNumber();
+        if(!problemRepository.validateProblemNumber(number)) {
+            throw new NoSuchProblemException("지원하지 않는 문제입니다.");
+        }
+
         String userCode = clientDto.getCode();
 
         // 문제를 가져온다.
