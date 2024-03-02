@@ -1,45 +1,73 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 import sys, os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
-from Model.inference import *
+from Server.services import * 
+import mysql.connector
+
+conn = mysql.connector.connect(
+    user='root',
+    password='llsy13579!',
+    host='localhost',
+    port=3306,
+    database='recommend_project'
+)
+
+DB_table_name = 'recommend_project'
+
+cursor = conn.cursor()
+use_query = f"USE {DB_table_name}"
+
+cursor.execute(use_query)
+
+set_query = "SET innodb_lock_wait_timeout = 28800;"
+
+cursor.execute(set_query) 
 
 app = FastAPI()
 
-# GET 요청에 대한 엔드포인트 정의
-@app.get("/get_list/{user_name}")
-def get_list(user_name):
+# 동적 로직을 처리하는 의존성 함수 정의
+async def dynamic_logic(user_id: str, wanted_algorithm_list: str = None):
+    if  wanted_algorithm_list is None:
+        # param2가 제공되지 않은 경우에 대한 로직
+        return (user_id, '[]')
+    else:
+        # param2가 제공된 경우에 대한 로직
+        return (user_id, wanted_algorithm_list)
 
-    user_libffm_data_path = '../Dataset/user_libffm_data_folder'
-    flag = True
 
-    user_binary_libffm_data_path = os.path.join(user_libffm_data_path, f"{user_name}_libffm_binary.txt")
-    user_reg_libffm_data_path = os.path.join(user_libffm_data_path, f"{user_name}_libffm_reg.txt")
+@app.get("/get_list")
+async def get_list(logic_result: str = Depends(dynamic_logic)):
 
+    user_id, wanted_algorithm_list = logic_result
 
-    if(not (os.path.exists(user_binary_libffm_data_path) and os.path.exists(user_reg_libffm_data_path))):
+    #일단 DB에 들어온 이름 사용자 추가.
+    insert_update_user(user_id)
+    
+    user_libffm_data_path = f'../Dataset/user_libffm_data_folder/{user_id}/'
 
-        result_df = get_user_non_problem(user_name)
+    user_libffm_data_path = os.path.join(user_libffm_data_path, f"{user_id}_libffm.txt")
 
-        if(isinstance(result_df,pd.DataFrame)):
-            create_user_ffm_data(user_name, result_df)
-        else:
-            flag = False
-            return "존재하지 않는 유저입니다."
+    if(os.path.exists(user_libffm_data_path)):
 
-    if(flag):
-        recommend_list, user_weak_algorithm = get_recommend_list(user_name)
+        recommend_list, user_weak_algorithm = get_recommend_list(user_id, ast.literal_eval(wanted_algorithm_list))
         return {"recommend_list": recommend_list, "user_weak_algorithm": user_weak_algorithm}
-    
-@app.get("/get_problem_information/{problem_number}")
-def get_problem_information(problem_number):
-    
-    problem_data_path = '../Dataset/Baekjoon_문제_context_크롤링.csv'
-    
-    problem_df = pd.read_csv(problem_data_path)
 
+    else:
+        return "존재하지 않는 유저입니다. 유저님의 정보가 모델에 반영되면 문제를 추천해드리겠습니다."
+
+
+@app.get("/get_problem_information")
+async def get_problem_information(problem_number: int):
+    
+    problem_info_query = "SELECT problem_description, problem_input, problem_output FROM problem_information_table WHERE problem_number = %s;"
+    cursor.execute(problem_info_query, (problem_number, ))
+    problem_info = cursor.fetchall()
+    
     return {
-        "problem_context": problem_df.loc[problem_df['problem_number']==int(problem_number), 'problem_description'].values[0],
-        "problem_input": problem_df.loc[problem_df['problem_number']==int(problem_number), 'problem_input'].values[0],
-        "problem_output": problem_df.loc[problem_df['problem_number']==int(problem_number), 'problem_output'].values[0]
+        "problem_context": problem_info[0][0],
+        "problem_input": problem_info[0][1],
+        "problem_output": problem_info[0][2]
     }
+
+

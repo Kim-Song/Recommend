@@ -104,6 +104,7 @@ lib_df.insert(0, 'target', target_field)
 lib_df['user_weak_algorithm'] = lib_df['user_id']
 lib_df['user_weak_algorithm'] = lib_df['user_weak_algorithm'].map(user_weak_algorithm)
 lib_df.drop(['submit_number', 'problem_result'],axis=1,inplace=True)
+
 print('-----step4...-----')
 
 lib_df.to_csv('../Dataset/lib_dataset/New_Non_Encoding_lib_data.csv',index=False)
