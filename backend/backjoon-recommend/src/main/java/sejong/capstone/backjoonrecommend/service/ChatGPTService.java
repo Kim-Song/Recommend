@@ -29,18 +29,18 @@ public class ChatGPTService {
         String extraQuestion = "";
         if (codeAnalysis == CodeAnalysis.BIG_O) {
             extraQuestion = "Please tell me the Big O notation for this code. Example -> O(N^3)\n"
-                    + "As an example, just tell me ‘Big O’ without further explanation. Never allow the total length of your answer to exceed 10 characters.";
+                    + "As an example, just tell me without further explanation. Never allow the total length of your answer to exceed 10 characters.";
         }
 
         if (codeAnalysis == CodeAnalysis.SPACE_COMPLEX) {
             extraQuestion = "Please tell me the space complex for this code. Example -> O(N^3)\n"
-                    + "As an example, just tell me ‘space complex’ without further explanation. Never allow the total length of your answer to exceed 10 characters.";
+                    + "As an example, just tell me without further explanation. Never allow the total length of your answer to exceed 10 characters.";
         }
 
         if (codeAnalysis == CodeAnalysis.WHAT_ALGO) {
             extraQuestion =
                     "Please tell me what algo it is for this code. Example -> Greedy\n"
-                            + "As an example, just tell me ‘what algo is’ without further explanation. "
+                            + "As an example, just tell me without further explanation. "
                             + "Never allow the total length of your answer to exceed 10 characters.";
         }
 

@@ -1,5 +1,6 @@
 package sejong.capstone.backjoonrecommend.domain.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -13,15 +14,17 @@ public class Problem {
     private String name;
     private String tier;
     private String algorithm;
-    private Double time_condition;
-    private Long memory_condition;
-    private Long submission_count;
-    private Long answer_submission_count;
-    private Long answered_people_count;
-    private Double correct_rate;
+    private Double timeCondition;
+    private Long memoryCondition;
+    private Long submissionCount;
+    private Long answerSubmissionCount;
+    private Long answeredPeopleCount;
+    private Double correctRate;
     private String description;
     private String input;
     private String output;
-    private Long other_result_form_1;
-    private Long other_result_form_2;
+    @Column(name = "other_result_form_1")
+    private Long otherResultForm1;
+    @Column(name = "other_result_form_2")
+    private Long otherResultForm2;
 }

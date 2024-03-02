@@ -31,7 +31,7 @@ public class ProblemRepository {
     public Boolean validateProblemNumber(Long problemNumber) {
         List<Problem> problems = em.createQuery("select m from Problem m "
                                 + "where m.number = :problemNumber "
-                                + "and m.other_result_form_1 = 0 and m.other_result_form_2 = 0",
+                                + "and m.otherResultForm1 = 0 and m.otherResultForm2 = 0",
                         Problem.class)
                 .setParameter("problemNumber", problemNumber)
                 .getResultList();

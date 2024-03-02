@@ -17,7 +17,7 @@ import sejong.capstone.backjoonrecommend.dto.client.send.AnalysisDto;
 import sejong.capstone.backjoonrecommend.dto.client.receipt.CorrectCodeAnalysisDto;
 import sejong.capstone.backjoonrecommend.dto.client.send.ExceptionDto;
 import sejong.capstone.backjoonrecommend.dto.client.send.WrongCodeAnalysisDto;
-import sejong.capstone.backjoonrecommend.exception.NoSuchProblemException;
+import sejong.capstone.backjoonrecommend.exception.IsNoSuchProblemException;
 import sejong.capstone.backjoonrecommend.repository.CodeRepository;
 import sejong.capstone.backjoonrecommend.repository.ProblemRepository;
 import sejong.capstone.backjoonrecommend.service.ChatGPTService;
@@ -30,17 +30,17 @@ public class CodeAnalysisController {
     private final ProblemRepository problemRepository;
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(NoSuchProblemException.class)
-    public ExceptionDto noSuchProblemExHandler(NoSuchProblemException e) {
+    @ExceptionHandler(IsNoSuchProblemException.class)
+    public ExceptionDto sendNoSuchProblemException(IsNoSuchProblemException e) {
         return new ExceptionDto(400L, e.getMessage());
     }
 
-    @PostMapping("/analysis")
+    @PostMapping("/analysis/correct")
     private AnalysisDto getCorrectCodeAnalysis(@RequestBody CorrectCodeAnalysisDto codeDto) {
         Long number = codeDto.getNumber();
 
         if(!problemRepository.validateProblemNumber(number)) {
-            throw new NoSuchProblemException("지원하지 않는 문제입니다.");
+            throw new IsNoSuchProblemException("지원하지 않는 문제입니다.");
         }
 
         Long time = codeDto.getTime();
@@ -101,11 +101,11 @@ public class CodeAnalysisController {
         return analysisDto;
     }
 
-    @PostMapping("/analysis2")
+    @PostMapping("/analysis/wrong")
     private WrongCodeAnalysisDto getWrongCodeAnalysis(@RequestBody sejong.capstone.backjoonrecommend.dto.client.receipt.WrongCodeAnalysisDto clientDto) {
         Long number = clientDto.getNumber();
         if(!problemRepository.validateProblemNumber(number)) {
-            throw new NoSuchProblemException("지원하지 않는 문제입니다.");
+            throw new IsNoSuchProblemException("지원하지 않는 문제입니다.");
         }
 
         String userCode = clientDto.getCode();
