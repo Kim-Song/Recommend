@@ -4,12 +4,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import sejong.capstone.backjoonrecommend.dto.ai.receipt.AiDTO;
 import sejong.capstone.backjoonrecommend.exception.IsNotRecommendProblemException;
 import sejong.capstone.backjoonrecommend.exception.IsNotSupportedUserException;
 import sejong.capstone.backjoonrecommend.exception.IsUnknownServerError;
 
+@Service
 public class AiServiceImpl implements AiService{
 
     @Value("${ai-recommend-problem-address}")
@@ -18,20 +20,25 @@ public class AiServiceImpl implements AiService{
     private RestTemplate restTemplate = new RestTemplate();
     private ObjectMapper objectMapper = new ObjectMapper();
     public AiDTO getProblems(String id, List<String> algorithms) {
-        String algorithmsQuery = algorithms.toString();
         String URL = problemRecommendAddress + "?user_id=" + id;
+        String algorithmsQuery = "";
+        for (String algorithm : algorithms) {
+            algorithmsQuery += algorithm;
+            algorithmsQuery += ",";
+        }
 
         if (algorithms.size() != 0) {
+            algorithmsQuery = algorithmsQuery.substring(0, algorithmsQuery.length() - 1);
             URL += "&wanted_algorithm_list=" + algorithmsQuery;
         }
 
-
+        System.out.println(URL);
         ResponseEntity<String> forEntity = restTemplate.getForEntity(URL, String.class);
         String body = forEntity.getBody();
         if (body.contains("Not Exist Problem")) {
             throw new IsNotRecommendProblemException("추천 문제가 존재하지 않습니다.");
         }
-        if (body.contains("No User")) {
+        if (body.contains("존재하지 않는 유저입니다. 유저님의 정보가 모델에 반영되면 문제를 추천해드리겠습니다.")) {
             throw new IsNotSupportedUserException("아직 지원하지 않는 유저입니다.");
         }
 
@@ -53,8 +60,8 @@ public class AiServiceImpl implements AiService{
 
         ResponseEntity<String> forEntity = restTemplate.getForEntity(URL, String.class);
         String body = forEntity.getBody();
-        if (body.contains("Not Exist Problem")) {
-            throw new IsNotRecommendProblemException("추천 문제가 존재하지 않습니다.");
+        if (body.contains("존재하지 않는 유저입니다. 유저님의 정보가 모델에 반영되면 문제를 추천해드리겠습니다.")) {
+            throw new IsNotSupportedUserException("아직 지원하지 않는 유저입니다.");
         }
 
         try {

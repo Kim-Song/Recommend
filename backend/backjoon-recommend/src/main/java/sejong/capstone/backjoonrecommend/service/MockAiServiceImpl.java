@@ -8,7 +8,6 @@ import sejong.capstone.backjoonrecommend.dto.ai.receipt.AiDTO;
 import sejong.capstone.backjoonrecommend.exception.IsNotRecommendProblemException;
 import sejong.capstone.backjoonrecommend.exception.IsNotSupportedUserException;
 
-@Service
 public class MockAiServiceImpl implements AiService{
     public AiDTO getProblems(String id, List<String> algorithms) {
         if (id.equals("no_id")) {

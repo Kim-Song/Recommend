@@ -15,6 +15,7 @@ import sejong.capstone.backjoonrecommend.dto.client.send.ExceptionDto;
 import sejong.capstone.backjoonrecommend.dto.client.send.ProblemDto;
 import sejong.capstone.backjoonrecommend.exception.IsNotRecommendProblemException;
 import sejong.capstone.backjoonrecommend.exception.IsNotSupportedUserException;
+import sejong.capstone.backjoonrecommend.exception.IsUnknownServerError;
 import sejong.capstone.backjoonrecommend.repository.ProblemRepository;
 import sejong.capstone.backjoonrecommend.service.AiService;
 
@@ -24,6 +25,12 @@ public class ProblemController {
 
     private final ProblemRepository problemRepository;
     private final AiService aiService;
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(IsUnknownServerError.class)
+    public ExceptionDto IsNotRecommendProblemException(IsUnknownServerError e) {
+        return new ExceptionDto(400L, e.getMessage());
+    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IsNotRecommendProblemException.class)
