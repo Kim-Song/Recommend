@@ -1,7 +1,5 @@
-@import "/css/reset.css";
-@import "/css/variables.css";
-@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Open+Sans:wght@400;600&display=swap");
-
+@import "./reset.css";
+@import "./variables.css";
 body {
   width: 700px;
   background: var(--background--color);
@@ -51,6 +49,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 12px;
 }
 .navbar a:first-child {
   background-color: none;
@@ -63,6 +62,11 @@ body {
   transition: all 0.3s ease-in;
 }
 
+#hint {
+  letter-spacing: 1px;
+  line-height: 1.5;
+  margin: 20px;
+}
 .logo {
   width: 20px;
   height: 20px;
@@ -198,7 +202,7 @@ button:hover {
   color: var(--font-color);
 
   font-weight: 0;
-
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   padding: 15px 30px 15px 30px;
   font-weight: 400;
@@ -206,7 +210,7 @@ button:hover {
   line-height: 1.4; /* 텍스트 크기의 1.5배로 간격 설정 */
   border: none;
   border: 1px solid var(--border-color);
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-size: 15px; /* 원하는 크기로 설정 */
   transition: all 1.2s ease-out;
 }
@@ -241,6 +245,8 @@ button:hover {
   font-size: 12px;
   display: flex;
   flex-direction: column;
+  font-weight: bold;
+  color: black;
 }
 
 #bestTimeComplexityWords,
@@ -250,10 +256,14 @@ button:hover {
   padding-left: 10px;
   font-size: 12px;
   display: flex;
+  line-height: 2;
   font-weight: 400;
 }
 
 .code-section {
+  flex: 1;
+
+  display: flex;
   max-height: 150px; /* 원하는 높이 */
   overflow: hidden;
   transition: max-height 0.5s ease; /* 애니메이션을 위한 transition 추가 */
@@ -277,4 +287,33 @@ button:hover {
 #showMoreButton2 :hover {
   scale: 1.2;
   transition: all 0.7s ease-out;
+}
+
+.loader {
+  margin-top: 100px;
+  display: none;
+  width: 50px;
+  --b: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 1px;
+  background: conic-gradient(#0000 10%, #428aca) content-box;
+  -webkit-mask: repeating-conic-gradient(
+      #0000 0deg,
+      #000 1deg 20deg,
+      #0000 21deg 36deg
+    ),
+    radial-gradient(
+      farthest-side,
+      #0000 calc(100% - var(--b) - 1px),
+      #000 calc(100% - var(--b))
+    );
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
+  animation: l4 1s infinite steps(10);
+}
+@keyframes l4 {
+  to {
+    transform: rotate(1turn);
+  }
 }

@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/popup.css" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline'; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *"
+    />
+    <link rel="stylesheet" href="./css/popup.css" />
     <title>PopUp</title>
   </head>
   <body>
@@ -13,9 +17,9 @@
       <div id="idDisplay"></div>
     </div>
     <div class="navbar">
-      <a href="/popup.html">Home</a>
+      <a href="./popup.html">Home</a>
 
-      <a href="/service.html">Services</a>
+      <a href="./service.html">Services</a>
     </div>
     <div class="analyzeContent">
       <p>분석하고 싶은 코드의 제출 번호를 입력해주세요!</p>
@@ -23,14 +27,30 @@
         <input type="text" id="submitNumber" placeholder="0000000" />
         <button id="analyzeButton">analyze</button>
       </div>
-      <div id="dataDisplay">
-        <div id="peronsalAnalyze">
-          <div id="analyze-flex"><div id="timeComplexity"></div></div>
-          <div id="analyze-flex"><div id="spaceComplexity"></div></div>
-          <div id="analyze-flex"><div id="algorithm"></div></div>
-          <div id="analyze-flex"><div id="hint"></div></div>
-        </div>
 
+      <div class="loader"></div>
+      <div id="dataDisplay">
+        <div><div id="hint"></div></div>
+        <div id="peronsalAnalyze">
+          <div id="analyze-flex">
+            <div id="timeComplexity">
+              <div id="Time"></div>
+              <div id="TimeContent"></div>
+            </div>
+          </div>
+          <div id="analyze-flex">
+            <div id="spaceComplexity">
+              <div id="Space"></div>
+              <div id="SpaceContent"></div>
+            </div>
+          </div>
+          <div id="analyze-flex">
+            <div id="algorithm">
+              <div id="Algorithm"></div>
+              <div id="AlgorithmContent"></div>
+            </div>
+          </div>
+        </div>
         <div id="compareAnalyze">
           <div id="bestTimeComplexity">
             <div id="title-flex">
@@ -68,8 +88,8 @@
         </div>
       </div>
 
-      <script src="./script/background.js"></script>
-      <script src="./script/popup.js"></script>
+      <script type="text/javascript" src="./script/background.js"></script>
+      <script type="text/javascript" src="./script/popup.js"></script>
     </div>
   </body>
 </html>

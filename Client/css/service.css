@@ -1,5 +1,5 @@
-@import "/css/reset.css";
-@import "/css/variables.css";
+@import "./reset.css";
+@import "./variables.css";
 @import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Open+Sans:wght@400;600&display=swap");
 body {
   width: 700px;
@@ -232,7 +232,49 @@ thead tr {
   margin-bottom: 10px;
 }
 
+#dataTable {
+  display: none;
+  width: 70%;
+}
 #dataBody button {
   border-radius: 10px;
   font-size: 10px;
+}
+
+#checkList {
+  font-size: 10px;
+}
+
+#problem-section {
+  display: flex;
+  flex-direction: column;
+}
+#algorithmList {
+  height: 150px;
+  overflow-y: auto; /* 세로 스크롤 추가 */
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap; /* 넘치는 경우 줄 바꿈 */
+  gap: 10px; /* 요소 사이의 간격 */
+}
+.algorithmItem {
+  width: calc(33.33% - 10px); /* 한 줄에 3개씩 표시하기 위한 너비 */
+}
+#selectedAlgorithms {
+  display: flex;
+  align-items: center;
+}
+#selectedAlgorithmList {
+  display: flex;
+  align-items: center;
+}
+
+#selectedAlgorithms button {
+  border: 0;
+  width: 15px;
+  height: 15px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }

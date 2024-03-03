@@ -4,15 +4,13 @@
     <meta charset="UTF-8" />
     <title>Carousel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="./css/service.css" />
 
-    <!-- 외부 CSS 파일 링크 -->
+    <link rel="stylesheet" href="./css/service.css" />
   </head>
   <body>
     <div class="navbar">
-      <a href="/popup.html">Home</a>
-      <a href="/service.html">Services</a>
+      <a href="./popup.html">Home</a>
+      <a href="./service.html">Services</a>
     </div>
 
     <div class="title">
@@ -33,24 +31,44 @@
         <div class="youtube-title">
           <span>Problems</span>
         </div>
-
-        <table id="dataTable">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Algorithm</th>
-            </tr>
-          </thead>
-          <tbody id="dataBody">
-            <!-- 여기에 무작위 질문이 추가됩니다 -->
-          </tbody>
-        </table>
+        <div id="problem-section">
+          <div id="checkList">
+            <div id="dataSet" style="display: flex; align-items: center">
+              <div style="display: flex; align-items: center; flex-grow: 1">
+                <input
+                  type="text"
+                  id="searchInput"
+                  onkeyup="searchAlgorithms()"
+                  placeholder="알고리즘 검색"
+                />
+                <div
+                  id="selectedAlgorithms"
+                  style="display: flex; align-items: center"
+                >
+                  <h3 style="margin-left: 20px">선택된 알고리즘:</h3>
+                  <div id="selectedAlgorithmList"></div>
+                </div>
+              </div>
+              <button id="submitBtn">제출</button>
+            </div>
+            <div id="algorithmList">
+              <!-- 여기에 알고리즘 목록이 자동으로 생성됩니다. -->
+            </div>
+          </div>
+          <table id="dataTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Algorithm</th>
+              </tr>
+            </thead>
+            <tbody id="dataBody"></tbody>
+          </table>
+        </div>
       </div>
-
       <script src="./script/lectures.js"></script>
-      <script src="/script/problem.js"></script>
-      <script src="/script/background.js"></script>
+      <script src="./script/problem.js"></script>
     </div>
   </body>
 </html>
