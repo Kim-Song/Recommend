@@ -26,8 +26,8 @@
   <tr>
     <td align="center"><a href="https://github.com/seunghyun0522"><b>seunghyun0522</b></a></td>
     <td align="center"><a href="https://github.com/trankill1127"><b>gywls20</b></a></td>
-    <td align="center"><a href="https://github.com/jeli01"><b>whgek506</b></a></td>
-    <td align="center"><a href="https://github.com/llsy159"><b>gyuchanlee</b></a></td>
+    <td align="center"><a href="https://github.com/jeli01"><b>jeli01</b></a></td>
+    <td align="center"><a href="https://github.com/llsy159"><b>llsy159</b></a></td>
 
   </tr>
 </table>
