@@ -14,3 +14,6 @@
 *.ERROR
 *.INFO
 *.WARN
+
+#SQL backup FILE
+*.sql

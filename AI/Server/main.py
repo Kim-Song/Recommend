@@ -10,10 +10,12 @@ conn = mysql.connector.connect(
     password='llsy13579!',
     host='localhost',
     port=3306,
-    database='recommend_project'
+    #database='recommend_project'
+    database='recommend'
 )
 
-DB_table_name = 'recommend_project'
+#DB_table_name = 'recommend_project'
+DB_table_name = 'recommend'
 
 cursor = conn.cursor()
 use_query = f"USE {DB_table_name}"
@@ -30,7 +32,7 @@ app = FastAPI()
 async def dynamic_logic(user_id: str, wanted_algorithm_list: str = None):
     if  wanted_algorithm_list is None:
         # param2가 제공되지 않은 경우에 대한 로직
-        return (user_id, '[]')
+        return (user_id, [])
     else:
         # param2가 제공된 경우에 대한 로직
         return (user_id, wanted_algorithm_list)
@@ -40,6 +42,8 @@ async def dynamic_logic(user_id: str, wanted_algorithm_list: str = None):
 async def get_list(logic_result: str = Depends(dynamic_logic)):
 
     user_id, wanted_algorithm_list = logic_result
+    if(isinstance(wanted_algorithm_list, str)):
+        wanted_algorithm_list = wanted_algorithm_list.split(',')
 
     #일단 DB에 들어온 이름 사용자 추가.
     insert_update_user(user_id)
@@ -50,7 +54,7 @@ async def get_list(logic_result: str = Depends(dynamic_logic)):
 
     if(os.path.exists(user_libffm_data_path)):
 
-        recommend_list, user_weak_algorithm = get_recommend_list(user_id, ast.literal_eval(wanted_algorithm_list))
+        recommend_list, user_weak_algorithm = get_recommend_list(user_id, wanted_algorithm_list)
         return {"recommend_list": recommend_list, "user_weak_algorithm": user_weak_algorithm}
 
     else:

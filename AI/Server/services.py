@@ -18,10 +18,12 @@ conn = mysql.connector.connect(
     password='llsy13579!',
     host='localhost',
     port=3306,
-    database='recommend_project'
+    #database='recommend_project'
+    database='recommend'
 )
 
-DB_table_name = 'recommend_project'
+#DB_table_name = 'recommend_project'
+DB_table_name = 'recommend'
 
 cursor = conn.cursor()
 use_query = f"USE {DB_table_name}"
@@ -187,7 +189,7 @@ def get_reg_recommend_result(user_id):
 
 
 def get_recommend_list(user_name, wanted_algorithm_list):
-    
+
     binary_dict, user_tier, user_weak_algorithm = get_binary_recommend_result(user_name)
     reg_dict, user_tier, user_weak_algorithm = get_reg_recommend_result(user_name)
     

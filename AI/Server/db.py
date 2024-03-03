@@ -29,10 +29,12 @@ conn = mysql.connector.connect(
     password='llsy13579!',
     host='localhost',
     port=3306,
-    database='recommend_project'
+    #database='recommend_project'
+    database='recommend'
 )
 
-DB_table_name = 'recommend_project'
+#DB_table_name = 'recommend_project'
+DB_table_name = 'recommend'
 
 cursor = conn.cursor()
 use_query = f"USE {DB_table_name}"
@@ -41,7 +43,7 @@ cursor.execute(use_query)
 
 set_query = "SET innodb_lock_wait_timeout = 28800;"
 
-cursor.execute(set_query)
+cursor.execute(set_query) 
 
 def delete_user_id_from_update_user_table(user_id):
     delete_user_id_query = "DELETE FROM update_user_table WHERE user_id = %s;"
@@ -442,7 +444,7 @@ def user_update(user_id):
     get_user_key_query = 'SELECT max(user_key) FROM user_information_table'
     cursor.execute(get_user_key_query)
     user_key_object = cursor.fetchall()
-    user_key = user_key_object[0][0]
+    user_key = user_key_object[0][0] + 1
     user_tier = tier_encoder[user_information[0]]
     user_rank = user_information[1]
     user_solved_problem = user_information[2]

@@ -50,10 +50,12 @@ conn = mysql.connector.connect(
     password='llsy13579!',
     host='localhost',
     port=3306,
-    database='recommend_project'
+    #database='recommend_project'
+    database='recommend'
 )
 
-DB_table_name = 'recommend_project'
+#DB_table_name = 'recommend_project'
+DB_table_name = 'recommend'
 
 cursor = conn.cursor()
 use_query = f"USE {DB_table_name}"
