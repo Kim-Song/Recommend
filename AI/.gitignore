@@ -17,3 +17,7 @@
 
 #SQL backup FILE
 *.sql
+
+#File
+*.egg
+*.whl
