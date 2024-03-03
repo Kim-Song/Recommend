@@ -1,18 +1,16 @@
 {
-    "manifest_version": 3,
-    "name": "RECOMM<<END",
-    "description": "YOU CAN ANALYZE YOUR CODE",
-    "version": "1.0", 
-    "action": {
-      "default_popup": "popup.html"
-    },
-    "permissions": [
-      "activeTab", 
-      "storage", 
-      "scripting"
-    ],
-    "host_permissions": [
-      "https://www.acmicpc.net/*"
-  ]
-  }
-
+  "manifest_version": 3,
+  "name": "RECOMM<<END",
+  "description": "Boost your coding test preparation!",
+  "version": "1.0",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "/assets/logo.png",
+    "32": "/assets/logo.png",
+    "48": "/assets/logo.png"
+  },
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": ["https://www.acmicpc.net/*"]
+}
