@@ -1,0 +1,11 @@
+:root {
+  --background--color: white;
+  --font-color: #428aca;
+  --hover-background-color: #428aca;
+  --hover-font-color: white;
+  --border-color: #428bcab7;
+  --gradation-color1: #428aca;
+  --gradation-color2: #6d9cc5;
+  --gradation-color3: #9ab5cd;
+  --gradation-color4: #ffffff;
+}

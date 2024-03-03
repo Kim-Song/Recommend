@@ -1,0 +1,319 @@
+@import "./reset.css";
+@import "./variables.css";
+body {
+  width: 700px;
+  background: var(--background--color);
+  color: var(--font-color);
+  display: flex;
+  flex-direction: column;
+
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+
+  margin-bottom: 20px;
+}
+.navbar {
+  position: fixed;
+  height: 100%;
+  margin-top: 50px;
+  top: 50%; /* 상황에 맞게 조절하세요 */
+  transform: translateY(-50%);
+  background-color: none;
+  padding: 20px 10px 20px 10px;
+}
+
+.navbar a {
+  display: block;
+  font-size: small;
+  padding: 20px;
+}
+
+#peronsalAnalyze {
+  display: flex;
+  justify-content: space-around;
+}
+#analyzeButton {
+  cursor: pointer;
+}
+#analyze-flex {
+  font-family: "Black Han Sans";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#timeComplexity,
+#spaceComplexity,
+#algorithm,
+#hint {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+.navbar a:first-child {
+  background-color: none;
+  color: var(--font-color);
+  border-right: 1px solid var(--border-color);
+}
+.navbar a:hover {
+  background-color: var(--font-color);
+  color: white;
+  transition: all 0.3s ease-in;
+}
+
+#hint {
+  letter-spacing: 1px;
+  line-height: 1.5;
+  margin: 20px;
+}
+.logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+#idDisplay {
+  margin-right: 20px;
+  text-align: center;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px;
+  font-size: 20px;
+  margin-bottom: 10px;
+  background: var(--font-color);
+  color: var(--background--color);
+  transition: all 0.7s ease-out;
+  font-family: "Black Han Sans";
+  background: linear-gradient(
+    270deg,
+    var(--gradation-color4),
+    var(--gradation-color3),
+    var(--gradation-color2),
+    var(--gradation-color1)
+  );
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+}
+
+.title:hover {
+  color: var(--font--color);
+  border: 1px solid var(--background--color);
+
+  background-position: 99% 50%;
+}
+
+.frame {
+  display: flex;
+}
+.pageDivide {
+  display: flex;
+  flex-direction: column;
+  width: 50px;
+  height: 3px;
+}
+
+.analyzeContent {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+.analyzeContent p {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.analyzeContent p:hover {
+  background-color: var(--font-color);
+  color: #fff;
+  transition: all 0.5s ease-out;
+  background-position: 99% 50%;
+}
+.inputDataContent {
+  display: flex;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  color: var(--font-color);
+  background: transparent;
+  margin-bottom: 10px;
+  margin-right: 20px;
+  border-radius: 0;
+  border: none;
+  transition: all 0.7s ease-out;
+  border: 1px solid var(--border-color);
+}
+input ::placeholder {
+  color: var(--font-color);
+}
+
+input:hover {
+  color: var(--font-color);
+
+  border: 1px solid var(--border-color);
+
+  background-position: 99% 50%;
+}
+
+button {
+  display: inline-block;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--font-color);
+  border-radius: 0;
+  padding: 18px 20px 20px;
+  transition: all 0.7s ease-out;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(
+    270deg,
+    var(--gradation-color1),
+    var(--gradation-color2),
+    var(--gradation-color4),
+    var(--gradation-color4)
+  );
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+  text-decoration: none;
+  margin-bottom: 10px;
+  border: none;
+  border: 1px solid var(--border-color);
+}
+
+button:hover {
+  color: #fff;
+  border: 1px solid rgba(223, 190, 106, 0);
+
+  background-position: 99% 50%;
+}
+
+#analyze-flex {
+  font-size: 15px;
+}
+.styled-text {
+  color: var(--font-color);
+
+  font-weight: 0;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  padding: 15px 30px 15px 30px;
+  font-weight: 400;
+  font-family: "Black Han Sams";
+  line-height: 1.4; /* 텍스트 크기의 1.5배로 간격 설정 */
+  border: none;
+  border: 1px solid var(--border-color);
+  margin-bottom: 20px;
+  font-size: 15px; /* 원하는 크기로 설정 */
+  transition: all 1.2s ease-out;
+}
+
+#bestTimeComplexity {
+  display: flex;
+  flex-direction: column;
+}
+
+#bestSpaceComplexityTitle {
+  font-weight: 400;
+  font-size: 22px;
+  border-bottom: 2px solid var(--border-color);
+}
+#bestTimeComplexityTitle,
+#bestSpaceComplexityTitle {
+  font-weight: bold;
+
+  font-size: 25px;
+  border-bottom: 2px solid var(--border-color);
+}
+#code-word {
+  display: flex;
+}
+
+#dataDisplay {
+  margin: 10px 120px 0 120px;
+}
+
+#bestTimeComplexityCode,
+#bestSpaceComplexityCode {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  color: black;
+}
+
+#bestTimeComplexityWords,
+#bestSpaceComplexityWords {
+  margin-left: 10px;
+  border-left: 1px solid var(--border-color);
+  padding-left: 10px;
+  font-size: 12px;
+  display: flex;
+  line-height: 2;
+  font-weight: 400;
+}
+
+.code-section {
+  flex: 1;
+
+  display: flex;
+  max-height: 150px; /* 원하는 높이 */
+  overflow: hidden;
+  transition: max-height 0.5s ease; /* 애니메이션을 위한 transition 추가 */
+}
+
+.show-more {
+  max-height: none; /* 버튼을 눌렀을 때 전체 코드를 보여주는 클래스 */
+}
+
+#title-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#showMoreButton1:hover {
+  scale: 1.2;
+  transition: all 0.7s ease-out;
+}
+#showMoreButton2 :hover {
+  scale: 1.2;
+  transition: all 0.7s ease-out;
+}
+
+.loader {
+  margin-top: 100px;
+  display: none;
+  width: 50px;
+  --b: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 1px;
+  background: conic-gradient(#0000 10%, #428aca) content-box;
+  -webkit-mask: repeating-conic-gradient(
+      #0000 0deg,
+      #000 1deg 20deg,
+      #0000 21deg 36deg
+    ),
+    radial-gradient(
+      farthest-side,
+      #0000 calc(100% - var(--b) - 1px),
+      #000 calc(100% - var(--b))
+    );
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
+  animation: l4 1s infinite steps(10);
+}
+@keyframes l4 {
+  to {
+    transform: rotate(1turn);
+  }
+}

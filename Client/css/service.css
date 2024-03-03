@@ -1,0 +1,280 @@
+@import "./reset.css";
+@import "./variables.css";
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Open+Sans:wght@400;600&display=swap");
+body {
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  background: var(--background--color);
+  color: var(--font-color);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+
+  transition: background-color 1.5s ease;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  font-size: 20px;
+  margin-bottom: 10px;
+  background: var(--font-color);
+  color: var(--background--color);
+  transition: all 0.7s ease-out;
+  font-family: "Black Han Sans";
+  background: linear-gradient(
+    270deg,
+    var(--gradation-color4),
+    var(--gradation-color3),
+    var(--gradation-color2),
+    var(--gradation-color1)
+  );
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+}
+
+.title:hover {
+  color: var(--font-color);
+  border: 1px solid var(--background--color);
+  background-position: 99% 50%;
+}
+.navbar {
+  position: fixed;
+  height: 100%;
+  margin-top: 50px;
+  top: 50%; /* 상황에 맞게 조절하세요 */
+  transform: translateY(-50%);
+  background-color: none;
+  padding: 20px 10px 20px 10px;
+}
+
+.navbar a {
+  display: block;
+  font-size: small;
+
+  padding: 20px;
+}
+
+.navbar a:last-child {
+  background-color: var(--background--color);
+  color: var(--font-color);
+  border-right: 1px solid var(--border-color);
+}
+.navbar a:hover {
+  background-color: var(--font-color);
+  color: white;
+  transition: all 0s ease-in;
+}
+.analyzeContent {
+  display: flex;
+  flex-direction: column;
+  margin-left: 130px;
+}
+.logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+#idDisplay {
+  margin-right: 20px;
+  text-align: center;
+}
+
+.recommend-youtube {
+  width: 500px;
+  overflow: hidden;
+  display: flex;
+  border: none;
+  font-family: "Black Han Sans";
+  flex-direction: column;
+  justify-content: center;
+}
+.recommend-problem {
+  width: 500px;
+  display: flex;
+  border: none;
+  font-family: "Black Han Sans";
+  border-top: none;
+  flex-direction: column;
+  justify-content: center;
+}
+.youtube-title {
+  display: flex;
+  margin-top: 20px;
+  padding: 0 20px 0 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+.youtube-title span {
+  text-decoration: underline;
+  font-size: 20px;
+  font-weight: 500;
+}
+.refreshBtn {
+  border-radius: 100px;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+}
+
+.carousel-frame {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+.carousel {
+  display: flex;
+}
+
+.carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: 30px;
+  transition: transform 0.3s, filter 0.3s; /* 변화에 트랜지션 적용 */
+
+  /* 확대 및 배경 어둡게 효과 */
+  filter: brightness(100%);
+}
+.carousel-item:hover {
+  transform: scale(1.2); /* 확대 효과 */
+  filter: brightness(70%); /* 배경 어둡게 */
+}
+
+button {
+  display: inline-block;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: var(--font-color);
+  cursor: pointer;
+  border-radius: 0;
+  padding: 10px 5px;
+  transition: all 0.3s ease-out;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  text-decoration: none;
+  margin-bottom: 10px;
+  border: none;
+  border: 1px solid var(--border-color);
+}
+button[data-tier="Silver"] {
+  background-color: rgb(56, 84, 110);
+}
+
+button[data-tier="Gold"] {
+  background-color: rgb(210, 133, 0);
+}
+
+button[data-tier="Platinum"] {
+  background-color: rgb(0, 199, 139);
+}
+
+button[data-tier="Diamond"] {
+  background-color: rgb(0, 158, 229);
+}
+
+button:hover {
+  color: #fff;
+  border: 1px solid transparent;
+}
+
+/* 티어별 버튼 배경색 지정 */
+
+button:hover {
+  color: #fff;
+  border: 1px solid rgba(223, 190, 106, 0);
+  transform: scale(1.1);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  background-position: 99% 50%;
+}
+table {
+  width: 100%;
+  font-size: 12px;
+  margin-bottom: 30px;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: center;
+  width: auto; /* 자동으로 셀 크기 조정 */
+  white-space: nowrap; /* 긴 문자열이 셀을 벗어나지 않도록 함 */
+  overflow: hidden; /* 셀 내부의 내용이 넘칠 경우 가림 */
+  text-overflow: ellipsis; /* 셀 내부의 내용이 넘칠 경우 생략 부호(...) 표시 */
+}
+
+tr:hover {
+  transition: all 0.3s ease-out;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  scale: 1.03;
+
+  border-bottom: 1px solid var(--border-color);
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+thead tr {
+  border-bottom: solid 2px var(--border-color);
+  margin-bottom: 10px;
+}
+
+#dataTable {
+  display: none;
+  width: 70%;
+}
+#dataBody button {
+  border-radius: 10px;
+  font-size: 10px;
+}
+
+#checkList {
+  font-size: 10px;
+}
+
+#problem-section {
+  display: flex;
+  flex-direction: column;
+}
+#algorithmList {
+  height: 150px;
+  overflow-y: auto; /* 세로 스크롤 추가 */
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap; /* 넘치는 경우 줄 바꿈 */
+  gap: 10px; /* 요소 사이의 간격 */
+}
+.algorithmItem {
+  width: calc(33.33% - 10px); /* 한 줄에 3개씩 표시하기 위한 너비 */
+}
+#selectedAlgorithms {
+  display: flex;
+  align-items: center;
+}
+#selectedAlgorithmList {
+  display: flex;
+  align-items: center;
+}
+
+#selectedAlgorithms button {
+  border: 0;
+  width: 15px;
+  height: 15px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
