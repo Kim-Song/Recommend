@@ -26,15 +26,15 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 
 conn = mysql.connector.connect(
     user='root',
-    password='llsy13579!',
-    host='localhost',
+    password='llsy159',
+    host='recommend.cpis6qs4azhq.ap-northeast-2.rds.amazonaws.com',
     port=3306,
-    #database='recommend_project'
-    database='recommend'
+    database='recommend_project'
+    #database='recommend'
 )
 
-#DB_table_name = 'recommend_project'
-DB_table_name = 'recommend'
+DB_table_name = 'recommend_project'
+#DB_table_name = 'recommend'
 
 cursor = conn.cursor()
 use_query = f"USE {DB_table_name}"
