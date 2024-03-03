@@ -32,29 +32,27 @@
   </tr>
 </table>
 
-## Contents
+## ✏️  Contents
 
-- [Contributors](#contributors)
-- [Contents](#contents)
-- [RECOMM\<\<END](#recommend)
-- [Function](#function)
-  - [Code Analysis](#code-analysis)
-  - [Provides code improvement hints](#provides-code-improvement-hints)
-  - [YouTube lecture recommendation](#youtube-lecture-recommendation)
-  - [Problem Recommendation (Random / Algorithm)](#problem-recommendation-random--algorithm)
 
-## RECOMM&lt;&lt;END
+- RECOMM\<\<END
+- Function
+  - Code Analysis
+  - Provides code improvement hints
+  - YouTube lecture recommendation
+  - Problem Recommendation (Random / Algorithm)
+
+</br>
+
+## ✏️ RECOMM&lt;&lt;END
 
 <p align="center">Recommand is a Chrome extension program that aims to help you prepare for coding tests with Baekjun more efficiently 😃 </p>
 
-## Function
+## ✏️  Function
 
-- Code Analysis
-- Provides code improvement hints
-- YouTube lecture recommendation
-- Problem Recommendation (Random / Algorithm)
 
-### Code Analysis
+
+### 1️⃣ Code Analysis
 
 </br>
 
@@ -71,7 +69,7 @@ You can see three pieces of information in order.
 - Better code in terms of time complexity than user code, and the difference between that code and user code
 - Better than the user code in terms of space complexity, and the difference between the code and the user code
 
-### Provides code improvement hints
+### 2️⃣ Provides code improvement hints
 
 </br>
 
@@ -84,7 +82,7 @@ You can see three pieces of information in order.
 You can use this function by entering the submission number of the code that received the result [틀렸습니다] and clicking the ANALYZE button.
 It provides hints to improve your code.
 
-### YouTube lecture recommendation
+### 3️⃣ YouTube lecture recommendation
 
 </br>
 
@@ -96,7 +94,7 @@ It provides hints to improve your code.
 
 It analyzes the user's vulnerable algorithms and recommends YouTube lectures that can complement that part.
 
-### Problem Recommendation (Random / Algorithm)
+### 4️⃣ Problem Recommendation (Random / Algorithm)
 
 - Random
 
