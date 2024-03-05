@@ -27,7 +27,7 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 conn = mysql.connector.connect(
     user='root',
     password='llsy159',
-    host='recommend.cpis6qs4azhq.ap-northeast-2.rds.amazonaws.com',
+    host='localhost',
     port=3306,
     database='recommend_project'
     #database='recommend'

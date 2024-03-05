@@ -8,7 +8,7 @@
 *.exe
 
 #FFM Model result file
-.out
+*.out
 
 #FFM ERROR FILE
 *.ERROR

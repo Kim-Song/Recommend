@@ -19,7 +19,7 @@ from sklearn.model_selection import train_test_split
 conn = mysql.connector.connect(
     user='root',
     password='llsy159',
-    host='recommend.cpis6qs4azhq.ap-northeast-2.rds.amazonaws.com',
+    host='localhost',
     port=3306,
     database='recommend_project'
     #database='recommend'
@@ -142,7 +142,7 @@ def create_libffm_dataset(libffm_df):
 
     X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    lib_path = "../DataSet/libffm/"
+    lib_path = "../Dataset/libffm/"
 
     user_id_field = 1
     user_tier_field = 0.5

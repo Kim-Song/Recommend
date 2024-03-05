@@ -16,7 +16,7 @@ import pickle
 conn = mysql.connector.connect(
     user='root',
     password='llsy159',
-    host='recommend.cpis6qs4azhq.ap-northeast-2.rds.amazonaws.com',
+    host='localhost',
     port=3306,
     database='recommend_project'
     #database='recommend'
@@ -70,9 +70,9 @@ def insert_update_user(user_id):
 
 def get_binary_recommend_result(user_id):
 
-    user_libffm_path = f'../DataSet/user_libffm_data_folder/{user_id}/'
-    model_path = '../DataSet/ffm_model/'
-    user_libffm_result_path = f'../DataSet/user_ffm_result/{user_id}/'
+    user_libffm_path = f'../Dataset/user_libffm_data_folder/{user_id}/'
+    model_path = '../Dataset/ffm_model/'
+    user_libffm_result_path = f'../Dataset/user_ffm_result/{user_id}/'
 
     tier_encoder_query = 'SELECT tier, tier_number FROM tier_encoder_table'
     cursor.execute(tier_encoder_query)
@@ -130,9 +130,9 @@ def get_binary_recommend_result(user_id):
 
 def get_reg_recommend_result(user_id):
 
-    user_libffm_path = f'../DataSet/user_libffm_data_folder/{user_id}/'
-    model_path = '../DataSet/ffm_model/'
-    user_libffm_result_path = f'../DataSet/user_ffm_result/{user_id}/'
+    user_libffm_path = f'../Dataset/user_libffm_data_folder/{user_id}/'
+    model_path = '../Dataset/ffm_model/'
+    user_libffm_result_path = f'../Dataset/user_ffm_result/{user_id}/'
 
     tier_encoder_query = 'SELECT tier, tier_number FROM tier_encoder_table'
     cursor.execute(tier_encoder_query)
@@ -189,7 +189,7 @@ def get_reg_recommend_result(user_id):
 
 
 def get_recommend_list(user_name, wanted_algorithm_list):
-
+    
     binary_dict, user_tier, user_weak_algorithm = get_binary_recommend_result(user_name)
     reg_dict, user_tier, user_weak_algorithm = get_reg_recommend_result(user_name)
     

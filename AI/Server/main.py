@@ -8,7 +8,7 @@ import mysql.connector
 conn = mysql.connector.connect(
     user='root',
     password='llsy159',
-    host='recommend.cpis6qs4azhq.ap-northeast-2.rds.amazonaws.com',
+    host='localhost',
     port=3306,
     database='recommend_project'
     #database='recommend'
@@ -51,9 +51,9 @@ async def get_list(logic_result: str = Depends(dynamic_logic)):
     user_libffm_data_path = f'../Dataset/user_libffm_data_folder/{user_id}/'
 
     user_libffm_data_path = os.path.join(user_libffm_data_path, f"{user_id}_libffm.txt")
-
+    
     if(os.path.exists(user_libffm_data_path)):
-
+        
         recommend_list, user_weak_algorithm = get_recommend_list(user_id, wanted_algorithm_list)
         return {"recommend_list": recommend_list, "user_weak_algorithm": user_weak_algorithm}
 
