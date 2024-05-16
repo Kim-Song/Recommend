@@ -1,0 +1,23 @@
+
+#Dataset
+/Dataset
+
+
+#Crawling Sub Dataset
+*.pkl
+*.exe
+
+#FFM Model result file
+*.out
+
+#FFM ERROR FILE
+*.ERROR
+*.INFO
+*.WARN
+
+#SQL backup FILE
+*.sql
+
+#File
+*.egg
+*.whl
