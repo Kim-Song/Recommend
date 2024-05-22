@@ -46,7 +46,7 @@
 
 ## ✏️ RECOMM&lt;&lt;END
 
-<p align="center">Recommand is a Chrome extension program that aims to help you prepare for coding tests with Baekjun more efficiently 😃 </p>
+<p align="center">Recommend is a Chrome extension program that aims to help you prepare for coding tests with Baekjun more efficiently 😃 </p>
 
 ## ✏️  Function
 
