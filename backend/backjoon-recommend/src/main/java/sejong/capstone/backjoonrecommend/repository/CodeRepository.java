@@ -4,7 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import sejong.capstone.backjoonrecommend.domain.Code;
+import sejong.capstone.backjoonrecommend.domain.entity.Code;
 
 @Repository
 @Transactional

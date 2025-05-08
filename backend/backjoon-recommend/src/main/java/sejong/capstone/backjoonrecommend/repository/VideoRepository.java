@@ -5,7 +5,7 @@ import jakarta.persistence.PersistenceContext;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import sejong.capstone.backjoonrecommend.domain.Video;
+import sejong.capstone.backjoonrecommend.domain.entity.Video;
 
 @Repository
 @Transactional
