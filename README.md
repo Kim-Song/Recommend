@@ -2,13 +2,10 @@
     <img src="./Client/assets/background.png" width=300 style="max-width:100%";> 
 </div>
 <br>
-
 <h1 align="center">RECOMM&lt;&lt;END</h1>
-
 </br>
 
-## Contributors
-
+## 기여자
 <table align="center">
  <tr>
     <td align="center"><a href="https://github.com/seunghyun0522"><img src="https://avatars.githubusercontent.com/seunghyun0522" width="130px;"></a></td>
@@ -21,79 +18,60 @@
     <td align="center"><a href="https://github.com/trankill1127"><b>gywls20</b></a></td>
     <td align="center"><a href="https://github.com/jeli01"><b>jeli01</b></a></td>
     <td align="center"><a href="https://github.com/llsy159"><b>llsy159</b></a></td>
-
   </tr>
 </table>
 
-## ✏️  Contents
-
-
-- RECOMM\<\<END
-- Function
-  - Code Analysis
-  - Provides code improvement hints
-  - YouTube lecture recommendation
-  - Problem Recommendation (Random / Algorithm)
+## ✏️ 목차
+- RECOMM\<\<END 소개
+- 주요 기능
+  - 코드 분석
+  - 코드 개선 힌트 제공
+  - 유튜브 강의 추천
+  - 문제 추천 (랜덤 / 알고리즘별)
 
 </br>
 
-## ✏️ RECOMM&lt;&lt;END
+## ✏️ RECOMM&lt;&lt;END 소개
+<p align="center">RECOMM&lt;&lt;END는 백준으로 코딩 테스트를 더 효율적으로 준비할 수 있도록 도움을 주는 Chrome 확장 프로그램입니다 😃 </p>
 
-<p align="center">Recommend is a Chrome extension program that aims to help you prepare for coding tests with Baekjun more efficiently 😃 </p>
+## ✏️ 주요 기능
 
-## ✏️  Function
-
-
-
-### 1️⃣ Code Analysis
-
+### 1️⃣ 코드 분석
 </br>
-
 <div align="center" >
 <img  src="./Client/assets/codeAnalysis.png" width=500/>
 </div>
-
 </br>
 
-You can use this function by entering the submission number of the code that received the result [맞았습니다!!] and clicking the ANALYZE button.
-You can see three pieces of information in order.
+[맞았습니다!!] 결과를 받은 코드의 제출 번호를 입력하고 ANALYZE 버튼을 클릭하면 이 기능을 사용할 수 있습니다.
+다음 세 가지 정보를 순서대로 확인할 수 있습니다.
+- 시간 복잡도, 공간 복잡도, 사용된 알고리즘
+- 사용자 코드보다 시간 복잡도가 우수한 코드와 그 코드와 사용자 코드의 차이점
+- 사용자 코드보다 공간 복잡도가 우수한 코드와 그 코드와 사용자 코드의 차이점
 
-- Time complexity, space complexity, what algorithm was used
-- Better code in terms of time complexity than user code, and the difference between that code and user code
-- Better than the user code in terms of space complexity, and the difference between the code and the user code
-
-### 2️⃣ Provides code improvement hints
-
+### 2️⃣ 코드 개선 힌트 제공
 </br>
-
 <div align="center" >
 <img  src="./Client/assets/codeFail.png" width=500/>
 </div>
-
 </br>
 
-You can use this function by entering the submission number of the code that received the result [틀렸습니다] and clicking the ANALYZE button.
-It provides hints to improve your code.
+[틀렸습니다] 결과를 받은 코드의 제출 번호를 입력하고 ANALYZE 버튼을 클릭하면 이 기능을 사용할 수 있습니다.
+코드를 개선할 수 있는 힌트를 제공합니다.
 
-### 3️⃣ YouTube lecture recommendation
-
+### 3️⃣ 유튜브 강의 추천
 </br>
-
 <div align="center" >
 <img  src="./Client/assets/video.png" width=500/>
 </div>
-
 </br>
 
-It analyzes the user's vulnerable algorithms and recommends YouTube lectures that can complement that part.
+사용자의 취약한 알고리즘을 분석하고 해당 부분을 보완할 수 있는 유튜브 강의를 추천합니다.
 
-### 4️⃣ Problem Recommendation (Random / Algorithm)
-
-- Random
-
-  If you don't select anything, you can get a random recommendation of the problem.
-
-- Algorithm
-
-  You can choose the algorithm you want and get recommendations for problems that fit that type.
-  For example, if you check math and implementation, you can get a recommendation for a problem that includes both math and implementation.
+### 4️⃣ 문제 추천 (랜덤 / 알고리즘별)
+- **랜덤**
+  아무것도 선택하지 않으면 문제를 랜덤으로 추천받을 수 있습니다.
+  
+- **알고리즘별**
+  원하는 알고리즘을 선택하여 해당 유형에 맞는 문제 추천을 받을 수 있습니다.
+  예를 들어, 수학과 구현을 체크하면 수학과 구현이 모두 포함된 문제를 추천받을 수 있습니다.
