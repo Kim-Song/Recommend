@@ -5,13 +5,6 @@
 
 <h1 align="center">RECOMM&lt;&lt;END</h1>
 
-<p align="center" dir="auto">
-<a href="/BaekjoonHub/BaekjoonHub/blob/06f845dd9374836c71e9d7e3558233072f801008/LICENSE"><img src="https://camo.githubusercontent.com/2bb6ac78e5a9f4f688a6a066cc71b62012101802fcdb478e6e4c6b6ec75dc694/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4d49542d626c75652e737667" alt="license" data-canonical-src="https://img.shields.io/badge/license-MIT-blue.svg" style="max-width: 100%;"></a>
-<a href="https://chrome.google.com/webstore/detail/ccammcjdkpgjmcpijpahlehmapgmphmk" rel="nofollow"><img src="https://camo.githubusercontent.com/ebe380670009f00c048486943de2b1d93abb6c22a070f9066d362563ec01ca03/68747470733a2f2f696d672e736869656c64732e696f2f6368726f6d652d7765622d73746f72652f762f6363616d6d636a646b70676a6d6370696a7061686c65686d6170676d70686d6b2e737667" alt="chrome-webstore" data-canonical-src="https://img.shields.io/chrome-web-store/v/ccammcjdkpgjmcpijpahlehmapgmphmk.svg" style="max-width: 100%;"></a>
-<a href="https://chrome.google.com/webstore/detail/ccammcjdkpgjmcpijpahlehmapgmphmk" rel="nofollow"><img src="https://camo.githubusercontent.com/28d2aafa1e80e8ca650f5550e6ace8d92bb686cffd4063d961853d791ad87f0e/68747470733a2f2f696d672e736869656c64732e696f2f6368726f6d652d7765622d73746f72652f642f6363616d6d636a646b70676a6d6370696a7061686c65686d6170676d70686d6b2e737667" alt="users" data-canonical-src="https://img.shields.io/chrome-web-store/d/ccammcjdkpgjmcpijpahlehmapgmphmk.svg" style="max-width: 100%;"></a>
-
-</p>
-
 </br>
 
 ## Contributors
