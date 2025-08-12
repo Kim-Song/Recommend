@@ -39,7 +39,7 @@
 ### 1️⃣ 코드 분석
 </br>
 <div align="center" >
-<img  src="./Client/assets/codeAnalysis.png" width=500/>
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/a0b94104-250d-42ef-ab22-bcba223674df" />
 </div>
 </br>
 
